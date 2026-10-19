@@ -18,11 +18,10 @@ Legend: ✅ done · 🟡 in progress · ⬜ todo
 | Audio | Songsmith v1: 8 synth engines, a Klatt-style formant singer with 6 personas, CMUdict, seamless loops, −16 LUFS masters. Menu theme "One More Door" (4.17 min, 2.76 MB) plus 10 UI SFX. Day 0 jingle (1.1 min, 0.90 MB) with win/lose stingers |
 | Tests | 19 Godot unit tests, a headless platform smoke test (fuzzed input plus forced success/fail/star on every built day), a compile check of every script, 28 Songsmith pytest tests, and a Playwright browser smoke test (release desktop, preview Day 0, phone touch with 4× CPU throttle) |
 | Sizes | Main pack 0.30 MB · engine wasm 10.1 MB gzipped · first load ≈ 13.1 MB (target ≤ 15, limit 20) |
-| CI/CD | `ci.yml` (lint, stub drift, Godot tests, pytest) and `deploy.yml` (render → test → export → budgets → browser smoke → Pages) |
+| CI/CD | `ci.yml` (lint, stub drift, Godot tests, pytest) and `deploy.yml` (render → test → export → budgets → browser smoke → Pages). Both green on `main`; live at https://username846.github.io/disording/ (preview at `/preview/`) |
 
 **Still open from Step 1 (needs a real device or the repo owner):**
 
-- Enable Pages: *Settings → Pages → Source: GitHub Actions* (owner action).
 - Measure fps and boot time on real phones (low reference: 2020 Moto G / Snapdragon 665; mid: iPhone 11 or a 2021
   Android). CI's Chromium uses software WebGL (SwiftShader), so its fps numbers (~9 fps desktop, ~6 fps at 4×
   throttle) are recorded but not gated.
