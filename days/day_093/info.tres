@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 93
 title = "Dispatch 5"
 genre = "taxi fleet dispatch"
+inspired_by = "Grand Theft Auto III"
 pitch = "You're the night dispatcher for five cabs in a rough city. Match fares to cabs, reroute around incidents, and keep the meters running."
 hints = PackedStringArray()
 est_minutes = 12

@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 67
 title = "Goo Lab"
 genre = "gel-painting physics puzzle"
+inspired_by = "Portal 2"
 pitch = "Paint surfaces with bounce gel, speed gel and sticky gel so a test ball rolls into the exit."
 hints = PackedStringArray()
 est_minutes = 11

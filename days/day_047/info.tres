@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 47
 title = "Hall of Paintings"
 genre = "sliding-tile puzzle (animated paintings)"
+inspired_by = "Super Mario 64"
 pitch = "A castle hall of living paintings, scrambled into tiles. Slide them back together. Each solved painting awards a star."
 hints = PackedStringArray()
 est_minutes = 12

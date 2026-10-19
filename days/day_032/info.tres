@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 32
 title = "Just a Box"
 genre = "hide-in-plain-sight (prop stealth)"
+inspired_by = "Metal Gear Solid"
 pitch = "You're a cardboard box in a busy warehouse. Move only when nobody is watching, blend in with the other boxes and ride the conveyors to freedom."
 hints = PackedStringArray()
 est_minutes = 11

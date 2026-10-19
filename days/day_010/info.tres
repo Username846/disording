@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 10
 title = "Campfire Cookpot"
 genre = "recipe-discovery cooking"
+inspired_by = "The Legend of Zelda: Breath of the Wild - Nintendo Switch 2 Edition"
 pitch = "You're a wandering forager-chef. Put up to five ingredients in the pot. Their effects combine by hidden rules that you learn through experiments logged in your journal."
 hints = PackedStringArray()
 est_minutes = 10

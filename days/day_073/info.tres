@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 73
 title = "Natural Twenty"
 genre = "dice-check narrative"
+inspired_by = "Baldur's Gate 3"
 pitch = "A branching adventure story told through skill checks. Choose an approach, stack up modifiers and inspiration, then flick a physical d20 to see what happens."
 hints = PackedStringArray()
 est_minutes = 12

@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 56
 title = "Contain the Bloom"
 genre = "spread-containment puzzle"
+inspired_by = "Halo 2"
 pitch = "A creeping bloom spreads cell by cell through a ring station. Place barriers in real time to wall it off before it reaches the core."
 hints = PackedStringArray()
 est_minutes = 11

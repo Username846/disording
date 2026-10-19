@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 99
 title = "Strike It Up"
 genre = "bowling (relationship comedy)"
+inspired_by = "Grand Theft Auto IV"
 pitch = "Your over-eager cousin keeps phoning to invite you bowling. Tonight you finally go. Beat him over ten frames while he talks all the way through."
 hints = PackedStringArray()
 est_minutes = 9

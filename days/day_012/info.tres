@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 12
 title = "Hot & Cold Hollows"
 genre = "hot-and-cold proximity treasure digging"
+inspired_by = "Final Fantasy IX"
 pitch = "Ride a big digging bird through meadows. It senses buried treasure only as warmer or colder, so you have to dig in the right place before its stamina runs out."
 hints = PackedStringArray()
 est_minutes = 10

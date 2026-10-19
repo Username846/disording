@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 95
 title = "Ring Cartographer"
 genre = "exploration cartography (draw your own map)"
+inspired_by = "Halo: Combat Evolved"
 pitch = "You're stranded on a ring-shaped world. Explore under fog of war and draw the map yourself, then use it to deduce where the control room must be."
 hints = PackedStringArray()
 est_minutes = 12

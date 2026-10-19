@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 20
 title = "Lunker Pond"
 genre = "lure fishing (line-tension sim)"
+inspired_by = "The Legend of Zelda: Ocarina of Time 3D"
 pitch = "A sleepy old man's fishing pond. Cast lures, read how the fish behave, and manage line tension to land the legendary lunker."
 hints = PackedStringArray()
 est_minutes = 10

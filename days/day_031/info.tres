@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 31
 title = "Nine Seals"
 genre = "gesture-glyph combat"
+inspired_by = "Ninja Gaiden Black"
 pitch = "Draw hand-sign glyphs to cast ninja arts at approaching fiends. Faster, cleaner strokes hit harder."
 hints = PackedStringArray()
 est_minutes = 10

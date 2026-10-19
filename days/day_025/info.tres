@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 25
 title = "Council of Five"
 genre = "swipe-decision kingdom (Reigns-like)"
+inspired_by = "Sid Meier's Civilization II"
 pitch = "Rule from the Stone Age to the Space Age by swiping on your advisors' proposals, keeping Food, Faith, Gold and Science in balance."
 hints = PackedStringArray()
 est_minutes = 10

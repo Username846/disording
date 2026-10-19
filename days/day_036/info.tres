@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 36
 title = "Tumbler"
 genre = "tactile lockpicking"
+inspired_by = "Tom Clancy's Splinter Cell: Chaos Theory"
 pitch = "Pick pin-tumbler locks by feel: the pick wobbles, the pin clicks, and the phone vibrates where supported. A guard's patrol timer keeps the pressure on."
 hints = PackedStringArray()
 est_minutes = 10

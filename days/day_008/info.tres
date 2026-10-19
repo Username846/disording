@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 8
 title = "Pocket Multitool"
 genre = "hacking-puzzle anthology"
+inspired_by = "Half-Life: Alyx"
 pitch = "A scavenger's multitool cracks alien locks in three styles: rotate concentric rings to line up energy nodes, bounce a laser through prisms, and trace live wires hidden behind walls."
 hints = PackedStringArray()
 est_minutes = 11

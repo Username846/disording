@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 52
 title = "Glue & Glide"
 genre = "glue-craft vehicle builder"
+inspired_by = "The Legend of Zelda: Tears of the Kingdom - Nintendo Switch 2 Edition"
 pitch = "Glue logs, fans, wheels, balloons and sails into contraptions that carry you between sky islands."
 hints = PackedStringArray()
 est_minutes = 12

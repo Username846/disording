@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 4
 title = "Downwind"
 genre = "scent-trail stealth"
+inspired_by = "The Last of Us Part II"
 pitch = "A stray cat crosses a flooded, overgrown city. Patrol dogs don't need to see you; they follow the scent trail you leave. Wind carries scent, while water and rooftops break the trail."
 hints = PackedStringArray()
 est_minutes = 11

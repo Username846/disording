@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 97
 title = "Soulforge"
 genre = "blacksmith forging (rhythm crafting)"
+inspired_by = "SoulCalibur"
 pitch = "Forge legendary weapons for eight warriors. Heat the metal, hammer it to the rhythm, fold it, quench it, then watch a short duel that tests your work."
 hints = PackedStringArray()
 est_minutes = 11

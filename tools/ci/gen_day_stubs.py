@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Generate days/day_NNN/info.tres stubs for all 100 days from docs/GAMES.md.
 
-A day that already has its game.tscn owns its info.tres, so it is left alone
-(unless --force). Run after editing a brief's title, genre, pitch or target.
+A day that already has its game.tscn owns its info.tres, so only its
+`inspired_by` line (from game_list.txt) is kept in sync (unless --force).
+Run after editing a brief's title, genre, pitch or target, or game_list.txt.
 """
 from __future__ import annotations
 
@@ -14,6 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 GAMES = ROOT / "docs" / "GAMES.md"
+GAME_LIST = ROOT / "game_list.txt"
 
 TEMPLATE = """[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
 
@@ -24,6 +26,7 @@ script = ExtResource("1_info")
 day = {day}
 title = {title}
 genre = {genre}
+inspired_by = {inspired_by}
 pitch = {pitch}
 hints = PackedStringArray()
 est_minutes = {minutes}
@@ -57,6 +60,30 @@ def first_sentences(text: str, limit: int = 220) -> str:
     return out
 
 
+def parse_game_list() -> dict[int, str]:
+    """`N. Title` lines (an optional trailing ` — score` is ignored)."""
+    out = {}
+    for line in GAME_LIST.read_text(encoding="utf-8").splitlines():
+        m = re.match(r"\s*(\d+)\.\s+(.+?)\s*(?:—\s*\d+\s*)?$", line)
+        if m:
+            out[int(m.group(1))] = m.group(2).strip()
+    return out
+
+
+def sync_inspired_by(path: Path, value: str) -> bool:
+    """Updates (or inserts) the inspired_by line of an implemented day's info.tres."""
+    text = path.read_text(encoding="utf-8")
+    line = f"inspired_by = {godot_string(value)}"
+    if re.search(r"^inspired_by = .*$", text, flags=re.M):
+        new = re.sub(r"^inspired_by = .*$", lambda _m: line, text, flags=re.M)
+    else:
+        new = re.sub(r"^(genre = .*)$", lambda m: f"{m.group(1)}\n{line}", text, count=1, flags=re.M)
+    if new != text:
+        path.write_text(new, encoding="utf-8")
+        return True
+    return False
+
+
 def parse_games() -> list[dict]:
     text = GAMES.read_text(encoding="utf-8")
     blocks = re.split(r"^### Day ", text, flags=re.M)[1:]
@@ -87,16 +114,21 @@ def main() -> int:
     days = parse_games()
     if [d["day"] for d in days] != list(range(1, 101)):
         raise SystemExit("docs/GAMES.md must list days 1..100 in order")
+    sources = parse_game_list()
+    if sorted(sources) != list(range(1, 101)):
+        raise SystemExit("game_list.txt must list games 1..100")
     written = 0
     for d in days:
         folder = ROOT / "days" / f"day_{d['day']:03d}"
         if (folder / "game.tscn").exists() and not args.force:
+            written += sync_inspired_by(folder / "info.tres", sources[d["day"]])
             continue
         folder.mkdir(parents=True, exist_ok=True)
         content = TEMPLATE.format(
             day=d["day"],
             title=godot_string(d["title"]),
             genre=godot_string(d["genre"]),
+            inspired_by=godot_string(sources[d["day"]]),
             pitch=godot_string(d["pitch"]),
             minutes=d["minutes"],
             palette=palette_for(d["day"]),

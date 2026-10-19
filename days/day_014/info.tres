@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 14
 title = "Shadowtree Duels"
 genre = "parry-timing duel (boss rush)"
+inspired_by = "Elden Ring: Shadow of the Erdtree"
 pitch = "Seven duels decided by timing. Read the telegraphed attacks, parry on the correct side, and riposte when your opponent's posture breaks."
 hints = PackedStringArray()
 est_minutes = 10

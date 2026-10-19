@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 94
 title = "Hat Trick"
 genre = "possession puzzle"
+inspired_by = "Super Mario Odyssey"
 pitch = "Throw your living hat to possess creatures and objects, borrowing their abilities to solve each kingdom's puzzles."
 hints = PackedStringArray()
 est_minutes = 11

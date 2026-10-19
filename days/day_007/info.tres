@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 7
 title = "Night Shepherds"
 genre = "pursuit herding (you command the chasers)"
+inspired_by = "Pac-Man Championship Edition DX"
 pitch = "The maze chase in reverse. You command four sheepdogs through neon hedge mazes to corner a fox that eats glowing berries and speeds up."
 hints = PackedStringArray()
 est_minutes = 10

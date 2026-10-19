@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 40
 title = "Cursed Curios"
 genre = "merchant appraisal sim"
+inspired_by = "Diablo"
 pitch = "You're the town merchant buying loot from heroes who dive deeper each day. Appraise items, spot the cursed ones from their clues, and set prices you can profit on."
 hints = PackedStringArray()
 est_minutes = 11

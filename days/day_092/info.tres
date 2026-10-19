@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 92
 title = "Logbook"
 genre = "taxonomy identification (dichotomous key)"
+inspired_by = "Metroid Prime"
 pitch = "Scan alien creatures and classify them with a dichotomous field key (\"has radial symmetry? → …\"). Each correct entry unlocks the way forward."
 hints = PackedStringArray()
 est_minutes = 11

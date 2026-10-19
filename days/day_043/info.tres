@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 43
 title = "Tether"
 genre = "tethered-drone piloting"
+inspired_by = "Metal Gear Solid 4: Guns of the Patriots"
 pitch = "Pilot a little robot on a cable through vents and rooms for an old soldier. The cable snags on corners, has a fixed length, and the battery drains."
 hints = PackedStringArray()
 est_minutes = 11

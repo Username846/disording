@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 42
 title = "Cliffhanger"
 genre = "two-hand ice-climbing timing"
+inspired_by = "Call of Duty: Modern Warfare 2"
 pitch = "Climb an ice wall by alternating ice-axe swings. Bad timing cracks the ice, and storms shake you loose."
 hints = PackedStringArray()
 est_minutes = 10

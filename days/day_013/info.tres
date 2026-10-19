@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 13
 title = "Recall"
 genre = "throw-and-recall trajectory puzzle"
+inspired_by = "God of War (2018)"
 pitch = "A parent and child climb a frozen mountain. Throw an axe that sticks where it lands, then recall it along a straight line to smash runes, jam gears and carry the child's arrows."
 hints = PackedStringArray()
 est_minutes = 11

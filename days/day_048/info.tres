@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 48
 title = "Yomi Dojo"
 genre = "simultaneous-choice mind-game fighter"
+inspired_by = "Virtua Fighter 4"
 pitch = "Each exchange is a hidden simultaneous choice: Strike beats Throw, Throw beats Guard, Guard beats Strike, and Evade dodges strikes. Read your opponent's habits and push them out of the ring."
 hints = PackedStringArray()
 est_minutes = 10

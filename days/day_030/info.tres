@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 30
 title = "Theater Mode"
 genre = "live cinematography (camera director)"
+inspired_by = "Halo 3"
 pitch = "A robot war game plays out once, and you're the director. Frame shots, cut between cameras and capture every moment on the shot list with good composition."
 hints = PackedStringArray()
 est_minutes = 11

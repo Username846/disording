@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 17
 title = "Flag on the Play"
 genre = "referee sim"
+inspired_by = "Madden NFL 2002"
 pitch = "You're the referee. Watch each play, spot the fouls, flag the right player and make the right call."
 hints = PackedStringArray()
 est_minutes = 11

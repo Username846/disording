@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 80
 title = "Cascade Control"
 genre = "control-room instrument sim"
+inspired_by = "Half-Life"
 pitch = "You run an underground lab's control room. Calibrate the test beam, then keep the facility standing when the experiment cascades, and get everyone out on the trams."
 hints = PackedStringArray()
 est_minutes = 12

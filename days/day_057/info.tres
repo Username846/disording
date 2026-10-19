@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 57
 title = "Pace Notes"
 genre = "rally co-driver (call the corners)"
+inspired_by = "Gran Turismo 3: A-Spec"
 pitch = "You're the co-driver. Read the stage notes and call the corners in time (\"Left 3, over crest…\"). The AI driver trusts you completely."
 hints = PackedStringArray()
 est_minutes = 11

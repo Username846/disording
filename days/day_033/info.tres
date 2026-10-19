@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 33
 title = "Departures of the Dearly"
 genre = "travel-agent itinerary matching (afterlife deduction)"
+inspired_by = "Grim Fandango"
 pitch = "You're a travel agent for newly departed souls. Read each client's life story, work out how virtuous they were and sell them the right journey, from a walking stick to the express train."
 hints = PackedStringArray()
 est_minutes = 12

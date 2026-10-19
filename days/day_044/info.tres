@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 44
 title = "The Ashen Oath"
 genre = "quick-time cinematic action"
+inspired_by = "God of War (2005)"
 pitch = "A myth-sized interactive film. Every beat is a timed prompt: tap the circle, swipe the direction, mash the meter."
 hints = PackedStringArray()
 est_minutes = 10

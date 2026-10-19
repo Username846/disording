@@ -107,6 +107,7 @@ func _begin(from_checkpoint: bool) -> void:
 	else:
 		checkpoint_data = {}
 	hud.reset()
+	hud.set_inspired_by(info.inspired_by)
 	game = _scene.instantiate() as DayGame
 	if game == null:
 		push_error("%s root must extend DayGame." % info.scene_path)
@@ -247,6 +248,8 @@ func _pause_menu() -> Overlay:
 	var o := Overlay.new(560.0, 0.55)
 	o.add_title("Paused")
 	o.add_text(info.title, 28, Pal.SNOW_DIM)
+	if info.inspired_by != "":
+		o.add_text("Inspired by %s" % info.inspired_by, 22, Pal.SKY)
 	var col := VBoxContainer.new()
 	col.add_theme_constant_override("separation", 14)
 	var resume_btn := UiTheme.button("Resume", 360.0, true)

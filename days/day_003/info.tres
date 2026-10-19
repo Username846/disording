@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 3
 title = "Graph Paper Grand Prix"
 genre = "vector \"Racetrack\" (paper-and-pencil momentum racing)"
+inspired_by = "Gran Turismo 2"
 pitch = "The classic pen-and-paper racing game, made tactile. Your car's next point is limited to the nine grid points around \"position + current velocity\", so momentum is everything."
 hints = PackedStringArray()
 est_minutes = 10

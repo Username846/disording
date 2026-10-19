@@ -5,6 +5,8 @@ extends Resource
 @export var day := 0
 @export var title := ""
 @export var genre := ""
+## The game from game_list.txt this day riffs on, shown to the player as "Inspired by …".
+@export var inspired_by := ""
 @export_multiline var pitch := ""
 ## Three "icon|text" hints for the intro card, e.g. "drag|Drag back to aim".
 ## Icons: tap, double_tap, hold, drag, swipe, draw, pinch, flick, timer.

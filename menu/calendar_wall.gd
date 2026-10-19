@@ -15,7 +15,8 @@ const OPEN := CalendarRules.DoorState.OPEN
 const PLAYED := CalendarRules.DoorState.PLAYED
 const COMPLETED := CalendarRules.DoorState.COMPLETED
 const BEING_PAINTED := CalendarRules.DoorState.BEING_PAINTED
-## Wall colours per floor: winter → spring → summer → autumn → winter.
+## Wall colours per floor, from the ground floor (doors 1–10) up: winter → spring → summer →
+## autumn → winter. Door 1 is bottom-left; the numbers climb floor by floor to 100 under the roof.
 const FLOOR_COLORS: Array[Color] = [
 	Color("3b4a6b"),
 	Color("3f5470"),
@@ -99,13 +100,18 @@ func set_scroll(value: float) -> void:
 ## Rect of door n in content coordinates (before scrolling).
 func door_rect(n: int) -> Rect2:
 	var i := n - 1
-	var row := int(i / float(COLS))
+	var floor_index := int(i / float(COLS))
 	var col := i % COLS
 	var col_w := (size.x - SIDE_MARGIN * 2.0) / COLS
 	var d := door_size()
 	var x := SIDE_MARGIN + col_w * col + (col_w - d.x) * 0.5
-	var y := top_inset + ROOF_HEIGHT + row * row_height() + 18.0
+	var y := top_inset + ROOF_HEIGHT + _screen_row(floor_index) * row_height() + 18.0
 	return Rect2(x, y, d.x, d.y)
+
+
+## Floors are counted from the ground; screen rows from the roof.
+func _screen_row(floor_index: int) -> int:
+	return ROWS - 1 - floor_index
 
 
 func scroll_to_door(n: int, animate: bool = true) -> void:
@@ -182,13 +188,13 @@ func _draw() -> void:
 	var off := Vector2(0, -scroll)
 	_draw_roof(off)
 	var rh := row_height()
-	for row in ROWS:
-		var y := top_inset + ROOF_HEIGHT + row * rh - scroll
+	for floor_index in ROWS:
+		var y := top_inset + ROOF_HEIGHT + _screen_row(floor_index) * rh - scroll
 		if y > view.y or y + rh < 0.0:
 			continue
-		_draw_floor(row, y, rh)
+		_draw_floor(floor_index, y, rh)
 		for c in COLS:
-			var n := row * COLS + c + 1
+			var n := floor_index * COLS + c + 1
 			_draw_door(n, door_rect(n).position + off)
 	var base_y := top_inset + ROOF_HEIGHT + ROWS * rh - scroll
 	draw_rect(Rect2(0, base_y, view.x, view.y), Pal.SNOW)
@@ -214,8 +220,8 @@ func _draw_roof(off: Vector2) -> void:
 	draw_string(_bold, Vector2((w - tw) * 0.5, eave - 26), title, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Pal.GOLD)
 
 
-func _draw_floor(row: int, y: float, rh: float) -> void:
-	var color := FLOOR_COLORS[row]
+func _draw_floor(floor_index: int, y: float, rh: float) -> void:
+	var color := FLOOR_COLORS[floor_index]
 	draw_rect(Rect2(0, y, size.x, rh), color)
 	# Brick courses give the wall some texture without textures.
 	var line := color.darkened(0.12)
@@ -224,7 +230,7 @@ func _draw_floor(row: int, y: float, rh: float) -> void:
 	# Ledge with snow under the doors.
 	var ledge_y := y + rh - 30.0
 	draw_rect(Rect2(0, ledge_y, size.x, 14), color.darkened(0.35))
-	if row <= 1 or row >= 8:
+	if floor_index <= 1 or floor_index >= 8:
 		draw_rect(Rect2(0, ledge_y - 5, size.x, 7), Color(Pal.SNOW, 0.9))
 
 

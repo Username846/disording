@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 11
 title = "Little Lost Bolts"
 genre = "hidden-object search"
+inspired_by = "Astro Bot"
 pitch = "Pan and zoom across five busy dioramas to spot tiny lost robots hiding in plain sight."
 hints = PackedStringArray()
 est_minutes = 10

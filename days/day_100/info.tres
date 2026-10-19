@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 100
 title = "The Hundredth Song"
 genre = "ocarina song-casting adventure"
+inspired_by = "The Legend of Zelda: Ocarina of Time"
 pitch = "The finale. Learn songs by ear on a five-hole ocarina and play them to change time, weather and the world. The last temple is a medley of motifs from all 99 earlier songs."
 hints = PackedStringArray()
 est_minutes = 14

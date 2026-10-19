@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 49
 title = "Weighted Friend"
 genre = "virtual pet"
+inspired_by = "Portal: Companion Collection"
 pitch = "A test lab issues you a weighted cube. Keep it happy through ten test days while a sardonic lab voice keeps hinting that you'll have to give it up."
 hints = PackedStringArray()
 est_minutes = 10

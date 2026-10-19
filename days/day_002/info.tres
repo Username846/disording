@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 2
 title = "Switchboard Company"
 genre = "switchboard-operator sim"
+inspired_by = "Company of Heroes"
 pitch = "You run a 1940s field switchboard. The heroes on the line need you to patch squads, medics, supply and HQ together while the front shifts on the map above your board."
 hints = PackedStringArray()
 est_minutes = 11

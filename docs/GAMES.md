@@ -5,14 +5,15 @@
 
 Each day takes one entry from [`game_list.txt`](../game_list.txt) as its starting point. The day is an
 **original** game in a **rare genre**: it borrows a theme, a mood or one memorable mechanic from the listed game
-and builds something new around it. No names, characters, logos, music or art come from the source game. The
-in-game title is the one given here, and the source title never appears in the build.
+and builds something new around it. No characters, logos, music or art come from the source game. The in-game
+title is the one given here, and the source game is credited to the player as plain text: "Inspired by …" on the
+intro card, in the HUD while playing, and in the pause menu.
 
 **How to read an entry**
 
 | Field | Meaning |
 |---|---|
-| **Riff on** | List number and source game: the idea we borrow from (stays in the docs, never shown in the game) |
+| **Riff on** | List number and source game: the idea we borrow from. Shown in game as "Inspired by …" |
 | **Rare genre** | The genre, unique across the 100 days |
 | **Target** | Median time for a first successful clear (always 5–15 min; aim for 8–12) |
 | **Controls** | Everything works with **one pointer**: a finger *or* the left mouse button. No hover, right-click, keyboard or multi-touch is ever required |

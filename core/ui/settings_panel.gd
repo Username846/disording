@@ -203,7 +203,8 @@ class CreditsPanel:
 			"Music, voices and sound rendered by Songsmith, our own offline synthesizer.",
 			"Lyrics pronunciations: CMU Pronouncing Dictionary (BSD licence).",
 			"Font: Fredoka by The Fredoka Project Authors (SIL Open Font Licence 1.1).",
-			"Thanks to the games that shaped us.",
+			'Each door is an unofficial homage to the game named under "Inspired by".',
+			"Not affiliated with or endorsed by their owners; trademarks belong to their owners.",
 			"Version %s · %s" % [App.version, App.commit],
 		]
 		for line: String in lines:

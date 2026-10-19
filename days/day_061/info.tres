@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 61
 title = "Howling Stones"
 genre = "pitch-contour matching (howling)"
+inspired_by = "The Legend of Zelda: Twilight Princess"
 pitch = "A twilight wolf learns ancient songs at howling stones. Trace each melody's pitch contour by sliding your howl up and down, with no microphone needed."
 hints = PackedStringArray()
 est_minutes = 10

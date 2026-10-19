@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 68
 title = "Grabber"
 genre = "gravity-glove physics flinging"
+inspired_by = "Half-Life 2"
 pitch = "Grab any object in the scene and fling it: saw blades at locks, barrels onto switches, crates up as stairs. Work your way through a dystopian city to a rocket."
 hints = PackedStringArray()
 est_minutes = 11

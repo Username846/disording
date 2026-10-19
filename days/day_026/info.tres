@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 26
 title = "Rocket Jump Golf"
 genre = "blast-jump golf"
+inspired_by = "Quake"
 pitch = "You can't walk; you can only launch yourself with explosions. Fire at floors and walls to blast-jump to each hole's flag in as few shots as possible."
 hints = PackedStringArray()
 est_minutes = 11

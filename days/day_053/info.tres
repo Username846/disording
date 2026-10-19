@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 53
 title = "Neon Bay FM"
 genre = "radio-DJ station sim"
+inspired_by = "Grand Theft Auto: Vice City"
 pitch = "Run an 80s night-time radio show. Cue records, beat-match the transitions, slot in ads and caller requests, and never let the air go dead."
 hints = PackedStringArray()
 est_minutes = 12

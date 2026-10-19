@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 9
 title = "Rim Runner"
 genre = "tube shooter (Tempest-like)"
+inspired_by = "Sektori"
 pitch = "Your ship rides the rim of a geometric tunnel, auto-firing inward at shapes that climb toward you."
 hints = PackedStringArray()
 est_minutes = 10

@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 59
 title = "Two Worlds Lantern"
 genre = "dual-world layer-swap maze"
+inspired_by = "The Legend of Zelda: A Link to the Past / Four Swords"
 pitch = "Every room exists in a light world and a dark world. Walls in one are paths in the other. Swap worlds at lanterns to get through."
 hints = PackedStringArray()
 est_minutes = 11

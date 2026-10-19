@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 19
 title = "Orb Spelunker Pinball"
 genre = "metroidvania pinball"
+inspired_by = "Metroid Prime Remastered"
 pitch = "A metroidvania built from four linked pinball tables. Earn abilities (bomb, boost, magnet ball) that open lanes on the other tables."
 hints = PackedStringArray()
 est_minutes = 12

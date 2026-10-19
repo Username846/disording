@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 63
 title = "Moonlit Circles"
 genre = "encircle/lasso action roguelite"
+inspired_by = "Hades II"
 pitch = "A young witch binds enemies by drawing circles around them. Bigger loops catch more enemies but bind them more weakly. Between rooms, pick boons that change your circles."
 hints = PackedStringArray()
 est_minutes = 12

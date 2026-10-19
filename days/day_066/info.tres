@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 66
 title = "Liar's Saloon"
 genre = "liar's-dice bluffing"
+inspired_by = "Red Dead Redemption"
 pitch = "A frontier saloon tournament of liar's dice. Bid on the dice hidden under everyone's cups, call bluffs, and read each opponent's tells."
 hints = PackedStringArray()
 est_minutes = 10

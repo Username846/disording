@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 72
 title = "Attaché"
 genre = "inventory-packing puzzle"
+inspired_by = "Resident Evil 4 (2005)"
 pitch = "A shady merchant's packing service. Fit each client's oddly shaped kit into a case, against the clock."
 hints = PackedStringArray()
 est_minutes = 10

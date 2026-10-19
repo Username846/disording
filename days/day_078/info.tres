@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 78
 title = "Ground Messages"
 genre = "message-trust deduction"
+inspired_by = "Elden Ring"
 pitch = "Phantom travellers have scrawled messages on the ground across a dark land, and some of them lie. Use ratings, handwriting and context to decide which ones to trust before you jump, attack or walk on."
 hints = PackedStringArray()
 est_minutes = 11

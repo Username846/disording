@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 54
 title = "Stitch & Sticker"
 genre = "guide-the-walker sticker puzzle"
+inspired_by = "LittleBigPlanet"
 pitch = "A knitted doll walks on its own through cardboard levels. Place stickers (springs, glue, sponge grabbers, arrows) to steer it to the exit."
 hints = PackedStringArray()
 est_minutes = 11

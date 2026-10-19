@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 38
 title = "Ink Ribbons"
 genre = "key-and-lock route planning (scarcity)"
+inspired_by = "Resident Evil Code: Veronica"
 pitch = "Escape a snowbound mansion by planning routes across its floor plan. Keys open doors, danger rooms drain health, and saves at the typewriter use up scarce ink ribbons."
 hints = PackedStringArray()
 est_minutes = 12

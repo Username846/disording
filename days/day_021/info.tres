@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 21
 title = "Field of Hues"
 genre = "colour-field elemental duel"
+inspired_by = "Chrono Cross"
 pitch = "An elemental tug-of-war. Play coloured element tiles. The field remembers the last three colours played and amplifies matching plays, and a field filled with one colour unlocks a summon."
 hints = PackedStringArray()
 est_minutes = 11

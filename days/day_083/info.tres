@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 83
 title = "Slot Car Stadium"
 genre = "slot-car racing (one-button throttle)"
+inspired_by = "Gran Turismo"
 pitch = "A tabletop slot-car cup. The only control is the throttle: push too hard into a corner and you fly off the slot."
 hints = PackedStringArray()
 est_minutes = 10

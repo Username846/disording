@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 5
 title = "Umbra Courier"
 genre = "shadow-path light puzzle"
+inspired_by = "Tom Clancy's Splinter Cell: Pandora Tomorrow"
 pitch = "You guide a shadow creature carrying a sealed box. It can only move through darkness, so you slide lamps, close shutters and time patrol flashlights to carve a path of shadow through an embassy."
 hints = PackedStringArray()
 est_minutes = 10

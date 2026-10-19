@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 46
 title = "Hex Hearth"
 genre = "hex tile-laying"
+inspired_by = "Sid Meier's Civilization IV"
 pitch = "Grow a civilization one hex tile at a time. Fields, forests, rivers and villages score when they match their neighbours, and quests ask for specific shapes."
 hints = PackedStringArray()
 est_minutes = 11

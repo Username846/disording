@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 23
 title = "Burrow Plug"
 genre = "emergence-hole defence (timed whack-a-mole)"
+inspired_by = "Gears of War"
 pitch = "Burrowing creatures erupt from holes in a town square. Seal the holes with plugs. Your timing decides how strong each plug is, like an active reload."
 hints = PackedStringArray()
 est_minutes = 10

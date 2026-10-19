@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 77
 title = "The Mansion of Doors"
 genre = "branching gothic visual novel"
+inspired_by = "The House in Fata Morgana: Dreams of the Revenants Edition"
 pitch = "A maid guides a ghost through four doors into four eras of one mansion's tragedies. Piece the truth together and choose who to forgive."
 hints = PackedStringArray()
 est_minutes = 13

@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 62
 title = "Chalk the Field"
 genre = "groundskeeping and line painting"
+inspired_by = "Madden NFL 2003"
 pitch = "It's game day and the field must be perfect. Paint the yard lines and numbers, mow the patterns, and time the sprinklers around the weather."
 hints = PackedStringArray()
 est_minutes = 10

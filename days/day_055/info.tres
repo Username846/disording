@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 55
 title = "The Curator's Vault"
 genre = "museum curation sim"
+inspired_by = "The Legend of Zelda Collector's Edition"
 pitch = "Restore and exhibit a collection of old game cartridges and artefacts. Clean them, repair them, then arrange the halls by era and theme for picky critics."
 hints = PackedStringArray()
 est_minutes = 11

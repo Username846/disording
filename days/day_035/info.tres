@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 35
 title = "Spade Panel Party"
 genre = "memory concentration (pairs)"
+inspired_by = "Super Mario Advance 4: Super Mario Bros. 3"
 pitch = "A theatre-stage memory game. Flip panels to match pairs on boards that grow, shuffle and hide special panels."
 hints = PackedStringArray()
 est_minutes = 9

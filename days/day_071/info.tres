@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 71
 title = "Journal of the Lost City"
 genre = "journal-clue relic puzzles"
+inspired_by = "Uncharted 2: Among Thieves"
 pitch = "An explorer's journal holds sketches, rubbings and notes. Read them to set statues, dials and mirrors in ruined temples."
 hints = PackedStringArray()
 est_minutes = 11

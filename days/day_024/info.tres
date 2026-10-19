@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 24
 title = "Silver Tongue"
 genre = "persuasion-wheel social game"
+inspired_by = "The Elder Scrolls IV: Oblivion"
 pitch = "Win a town election by persuading eight townsfolk with a four-wedge wheel (Admire, Boast, Coerce, Joke). Read each face to learn what they like and hate."
 hints = PackedStringArray()
 est_minutes = 10

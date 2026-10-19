@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 28
 title = "Long Shot Range"
 genre = "long-range marksmanship / ballistics (non-violent targets)"
+inspired_by = "Call of Duty 4: Modern Warfare"
 pitch = "Competition shooting at steel plates and balloons. Read the wind flags, allow for bullet drop and hold your breath at the right moment."
 hints = PackedStringArray()
 est_minutes = 10

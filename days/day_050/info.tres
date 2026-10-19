@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 50
 title = "Pause & Plan"
 genre = "real-time-with-pause tactics"
+inspired_by = "Baldur's Gate II: Shadows of Amn"
 pitch = "A four-hero party fights through a dungeon. Pause at any moment to queue orders, aim area spells and position your party, then unpause and watch it play out."
 hints = PackedStringArray()
 est_minutes = 12

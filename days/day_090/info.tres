@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 90
 title = "Sim Trainer"
 genre = "behaviour-programming auto-arena"
+inspired_by = "Perfect Dark"
 pitch = "Program your training bots with if-then rule cards (\"If ally hurt → heal\", \"If enemy near → shield\"), then watch them fight arena simulations."
 hints = PackedStringArray()
 est_minutes = 11

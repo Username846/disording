@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 37
 title = "Wolfsled"
 genre = "sled-dog mushing (team management racing)"
+inspired_by = "God of War: Ragnarok"
 pitch = "Race a wolf sled team across nine frozen realms before the long winter closes in, balancing speed, the team's stamina and the trail."
 hints = PackedStringArray()
 est_minutes = 11

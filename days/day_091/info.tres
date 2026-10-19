@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 91
 title = "Camp Ledger"
 genre = "outlaw camp management"
+inspired_by = "Red Dead Redemption 2"
 pitch = "Keep a frontier camp fed, rested and hopeful while the law closes in. Assign chores, settle disputes, and decide when to move."
 hints = PackedStringArray()
 est_minutes = 11

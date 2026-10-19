@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 64
 title = "Thirty Days of Masks"
 genre = "calendar life-sim"
+inspired_by = "Persona 5 Royal"
 pitch = "Thirty days until the big heist. Split each day between school, part-time jobs and friends to raise five social stats and five bonds."
 hints = PackedStringArray()
 est_minutes = 11

@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 70
 title = "Four Screens"
 genre = "split-screen surveillance deduction"
+inspired_by = "GoldenEye 007"
 pitch = "Four split-screen camera feeds follow four agents through a facility. One is a double agent. Watch their behaviour and flag the impostor."
 hints = PackedStringArray()
 est_minutes = 10

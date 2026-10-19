@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 1
 title = "Toybox Ring-Out"
 genre = "flick-physics sumo (ring-out brawler)"
+inspired_by = "Super Smash Bros. Brawl"
 pitch = "Wind-up toys brawl on household battlefields. You don't press attack buttons; you flick your tin knight like a marble. Each hit adds damage %, and the more damage a toy has, the farther it flies. Ring everyone out."
 hints = PackedStringArray()
 est_minutes = 11

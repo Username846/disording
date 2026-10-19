@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 45
 title = "Twenty Cantina"
 genre = "side-deck blackjack duel"
+inspired_by = "Star Wars: Knights of the Old Republic"
 pitch = "A space-cantina card game. Get as close to 20 as you can without going over, using a hand of ± side cards you draft before each set."
 hints = PackedStringArray()
 est_minutes = 10

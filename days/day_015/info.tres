@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 15
 title = "Line & Grind"
 genre = "line-drawing track rider"
+inspired_by = "Tony Hawk's Pro Skater 4"
 pitch = "Draw the skatepark with your finger. Your lines become ramps and rails, and a physics skater rides them to complete goals."
 hints = PackedStringArray()
 est_minutes = 12

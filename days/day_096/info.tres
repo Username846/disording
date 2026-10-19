@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 96
 title = "Booth Call"
 genre = "live sports-commentary sim"
+inspired_by = "NFL 2K1"
 pitch = "You're in the broadcast booth. Call the plays as they happen, drop in stats and cue replays, all while keeping the broadcast rating up."
 hints = PackedStringArray()
 est_minutes = 12

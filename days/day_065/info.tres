@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 65
 title = "Plank & Pallet"
 genre = "companion-escort logistics puzzle"
+inspired_by = "The Last of Us Remastered"
 pitch = "Get your young companion, who can't swim, across a flooded city. Move planks, float pallets and raise ladders. You can do things they can't."
 hints = PackedStringArray()
 est_minutes = 11

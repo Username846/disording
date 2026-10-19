@@ -113,7 +113,8 @@ func _draw() -> void:
 		draw_circle(Vector2(s.x * view.x, s.y * view.y), 1.6, Color(Pal.SNOW, a))
 	draw_circle(Vector2(view.x * 0.82, view.y * 0.18), 46.0, Color("fdf3d0"))
 	draw_circle(Vector2(view.x * 0.82 + 16, view.y * 0.18 - 10), 40.0, top.lerp(bottom, 0.15))
-	# Townhouse silhouette with a grid of glowing windows: a hint of the calendar inside.
+	# Townhouse silhouette with a grid of glowing windows: a hint of the calendar inside
+	# (bottom-left window lit, where door 1 is).
 	var house := Rect2(view.x * 0.5 - 330, view.y - 190, 660, 190)
 	draw_colored_polygon(
 		PackedVector2Array(
@@ -128,7 +129,7 @@ func _draw() -> void:
 	draw_rect(house, Pal.INK)
 	for row in 3:
 		for c in 10:
-			var lit := (row * 10 + c) == 0 or sin(c * 1.7 + row * 2.3) > 0.4
+			var lit := (row == 2 and c == 0) or sin(c * 1.7 + row * 2.3) > 0.4
 			var w := Rect2(house.position + Vector2(24 + c * 63, 22 + row * 56), Vector2(36, 40))
 			draw_rect(w, Color(Pal.GOLD, 0.85) if lit else Color(Pal.NIGHT_3, 0.9))
 	draw_rect(Rect2(0, view.y - 14, view.x, 14), Pal.SNOW)

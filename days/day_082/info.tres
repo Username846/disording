@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 82
 title = "Baton Sails"
 genre = "wind-conducting sailing"
+inspired_by = "The Legend of Zelda: The Wind Waker"
 pitch = "Sail an open sea by conducting the wind. Trace the conducting pattern in time with the metronome and the wind turns to the direction you chose."
 hints = PackedStringArray()
 est_minutes = 12

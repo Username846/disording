@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 22
 title = "Chalkboard Coach"
 genre = "playbook drawing (coach sim)"
+inspired_by = "Madden NFL 2004"
 pitch = "Draw plays on a chalkboard: routes for receivers, blocks for linemen. The AI then runs your play against the defences you scouted."
 hints = PackedStringArray()
 est_minutes = 12

@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 85
 title = "Twin City Drive"
 genre = "dual-lane split-attention driving"
+inspired_by = "Grand Theft Auto Double Pack"
 pitch = "Two getaway cars in two cities at once. The left half of the screen drives one, the right half drives the other."
 hints = PackedStringArray()
 est_minutes = 10

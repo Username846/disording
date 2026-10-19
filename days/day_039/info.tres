@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 39
 title = "Pileup Junction"
 genre = "crash-junction physics puzzle"
+inspired_by = "Burnout 3: Takedown"
 pitch = "Launch your car into busy junctions to cause the most spectacular (and cartoonish) pile-up. Steer the tumbling wreck with aftertouch and set off the crash-breaker."
 hints = PackedStringArray()
 est_minutes = 10

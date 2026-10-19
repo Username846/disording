@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 16
 title = "Crimson Juggle"
 genre = "air-juggle keepy-uppy"
+inspired_by = "Devil May Cry"
 pitch = "Stylish keepy-uppy. Tap demons to launch them, keep them in the air, and spike them into each other to raise your style rank."
 hints = PackedStringArray()
 est_minutes = 10

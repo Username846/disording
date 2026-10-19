@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 79
 title = "Words of Power"
 genre = "constructed-language deciphering"
+inspired_by = "The Elder Scrolls V: Skyrim"
 pitch = "Learn a dragon tongue from context: wall carvings, tavern songs and what the villagers say. Then speak whole phrases to calm dragons instead of fighting them."
 hints = PackedStringArray()
 est_minutes = 12

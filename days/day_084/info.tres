@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 84
 title = "Coolant"
 genre = "bomb-disposal search"
+inspired_by = "Metal Gear Solid 2: Sons of Liberty"
 pitch = "Bombs are hidden across an offshore plant's struts. Sweep rooms with a sensor, avoid patrols, and freeze each charge with coolant spray before the timer runs out."
 hints = PackedStringArray()
 est_minutes = 12

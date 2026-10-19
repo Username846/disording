@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 81
 title = "Rewind Rock"
 genre = "object time-reversal puzzle"
+inspired_by = "The Legend of Zelda: Tears of the Kingdom"
 pitch = "Select an object and send it backwards along its own history: falling rocks rise again as platforms, and thrown logs fly back as bridges."
 hints = PackedStringArray()
 est_minutes = 11

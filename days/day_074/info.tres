@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 74
 title = "Payload Pals"
 genre = "lane-push payload escort"
+inspired_by = "The Orange Box"
 pitch = "A cartoon team of nine specialists pushes a cart down a track against an AI team. Pick who to deploy, and where, to keep the cart rolling."
 hints = PackedStringArray()
 est_minutes = 12

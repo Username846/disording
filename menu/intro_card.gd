@@ -18,6 +18,8 @@ func _ready() -> void:
 	body.add_child(door)
 	add_title(info.title, 52)
 	add_text(info.genre.substr(0, 1).to_upper() + info.genre.substr(1), 24, Pal.SKY)
+	if info.inspired_by != "":
+		add_text("Inspired by %s" % info.inspired_by, 22, Pal.SNOW_DIM)
 	if info.pitch != "":
 		add_text(info.pitch, 26)
 	if not info.hints.is_empty():

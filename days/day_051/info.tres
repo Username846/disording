@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 51
 title = "Hydraulic Hop"
 genre = "lowrider hydraulics rhythm"
+inspired_by = "Grand Theft Auto: San Andreas"
 pitch = "Cruise-off competitions on the boulevard. Bounce your lowrider's corners to the beat to win the crowd."
 hints = PackedStringArray()
 est_minutes = 10

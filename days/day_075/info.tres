@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 75
 title = "Fist Ball"
 genre = "volley-ball fighter"
+inspired_by = "Tekken 3"
 pitch = "A fighting tournament played over a beach net. Charge the ball with your strikes, and if it hits your opponent they take damage."
 hints = PackedStringArray()
 est_minutes = 10

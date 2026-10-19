@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 69
 title = "Undersea Pipes"
 genre = "pipe-flow puzzle (Pipe-Mania-like)"
+inspired_by = "BioShock"
 pitch = "Hack the machines of a drowned art-deco city by routing the flow through pipe tiles before it reaches an open end."
 hints = PackedStringArray()
 est_minutes = 10

@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 58
 title = "Three Day Moon"
 genre = "time-loop schedule puzzle"
+inspired_by = "The Legend of Zelda: Majora's Mask"
 pitch = "A town has three days before the moon falls, and each loop lasts about 3 minutes. Learn everyone's schedules, then step in at exactly the right moments. Your notebook carries over between loops."
 hints = PackedStringArray()
 est_minutes = 13

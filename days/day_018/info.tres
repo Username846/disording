@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 18
 title = "Gargoyle Detective"
 genre = "forensic crime-scene reconstruction"
+inspired_by = "Batman: Arkham City"
 pitch = "An owl detective perched above a rainy city scans crime scenes, links clues and scrubs through a reconstructed timeline of what happened."
 hints = PackedStringArray()
 est_minutes = 12

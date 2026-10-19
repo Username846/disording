@@ -14,6 +14,8 @@ var hearts: HeartRow
 var timer_label: Label
 var score_label: Label
 var info_label: Label
+## "Inspired by …": which listed game this day riffs on. Shown for the whole run.
+var inspired_label: Label
 var caption_panel: PanelContainer
 var caption_label: Label
 var fx: Node2D
@@ -41,6 +43,13 @@ func _ready() -> void:
 	timer_label = _status_label()
 	score_label = _status_label()
 	info_label = _status_label()
+
+	inspired_label = UiTheme.label("", 18, Color(Pal.SNOW, 0.75))
+	inspired_label.add_theme_color_override("font_outline_color", Pal.INK)
+	inspired_label.add_theme_constant_override("outline_size", 6)
+	inspired_label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	inspired_label.visible = false
+	root.add_child(inspired_label)
 
 	caption_panel = PanelContainer.new()
 	caption_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -99,6 +108,13 @@ func set_label(text: String) -> void:
 	info_label.text = text
 
 
+func set_inspired_by(game_title: String) -> void:
+	inspired_label.visible = game_title != ""
+	inspired_label.text = "Inspired by %s" % game_title
+	inspired_label.reset_size()
+	_layout()
+
+
 func toast(text: String, seconds: float = 2.4) -> void:
 	Toast.show_on(root, text, seconds)
 
@@ -126,6 +142,9 @@ func _layout() -> void:
 		MARGIN + m.x if left_handed else view.x - MARGIN - m.z - pause_button.custom_minimum_size.x, top
 	)
 	status.position = Vector2(view.x - m.z - MARGIN - status.size.x if left_handed else MARGIN + m.x + 4.0, top + 14.0)
+	inspired_label.position = Vector2(
+		view.x - m.z - MARGIN - inspired_label.size.x if left_handed else MARGIN + m.x + 6.0, top + 66.0
+	)
 	_layout_caption()
 
 

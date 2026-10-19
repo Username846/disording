@@ -7,6 +7,7 @@ script = ExtResource("1_info")
 day = 76
 title = "One Way Mission"
 genre = "crew-assignment logic (suicide-mission planner)"
+inspired_by = "Mass Effect 2"
 pitch = "Recruit specialists, earn their loyalty and upgrade the ship. Then assign everyone to the right roles for a mission where every choice decides who comes home."
 hints = PackedStringArray()
 est_minutes = 12
