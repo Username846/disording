@@ -26,8 +26,9 @@ Legend: ✅ done · 🟡 in progress · ⬜ todo
   Android). CI's Chromium uses software WebGL (SwiftShader), so its fps numbers (~9 fps desktop, ~6 fps at 4×
   throttle) are recorded but not gated.
 - Benchmark music **Stream vs Sample** playback on the low-reference phone (PLAN.md §6.1). It's Stream for now, with
-  a 150 ms web output buffer: in headless Chromium the music stays continuous at 10 and 29 fps (with the old 50 ms
-  default it dropped out about half the time at 30 fps).
+  a 300 ms web output buffer: headless Chromium plays it continuously at 11–26 fps; headless Firefox at ~20 fps
+  still drops ~10% of it (its worklet messages wait behind rendering). If real phones on Firefox stutter, consider
+  music via Sample playback or an `<audio>` element.
 - Confirm sound on a real iPhone with the silent switch on (the shell asks for the "playback" audio session).
 - Check whether GitHub Pages serves `index.wasm`/`index.pck` gzip-compressed (`curl -sI -H "Accept-Encoding: gzip"`).
 - Pick a licence for the repository's code (none is set yet).

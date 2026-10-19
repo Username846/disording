@@ -71,8 +71,7 @@ func _start(req: BundleRequest) -> void:
 	if FileAccess.file_exists(cached):
 		_finish_from_path(req, cached)
 		return
-	var http := HTTPRequest.new()
-	add_child(http)
+	var http := _new_request()
 	_http[req.id] = http
 	http.request_completed.connect(
 		func(result: int, code: int, _h: PackedStringArray, body: PackedByteArray) -> void:
@@ -170,13 +169,22 @@ func _set_manifest(parsed: Variant) -> void:
 
 
 func _fetch_json(url: String) -> Variant:
-	var http := HTTPRequest.new()
-	add_child(http)
+	var http := _new_request()
 	if http.request(url) != OK:
 		http.queue_free()
 		return null
 	var response: Array = await http.request_completed
 	http.queue_free()
 	if int(response[0]) != HTTPRequest.RESULT_SUCCESS or int(response[1]) != 200:
+		push_warning("Couldn't fetch %s (result %d, HTTP %d)" % [url, int(response[0]), int(response[1])])
 		return null
 	return JSON.parse_string((response[3] as PackedByteArray).get_string_from_utf8())
+
+
+func _new_request() -> HTTPRequest:
+	var http := HTTPRequest.new()
+	# The browser already decompresses gzip responses (GitHub Pages gzips JSON) but still reports
+	# "Content-Encoding: gzip", so Godot would try to inflate plain bytes and fail the request.
+	http.accept_gzip = false
+	add_child(http)
+	return http

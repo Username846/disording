@@ -40,6 +40,46 @@ def write_build_info() -> None:
     print(f"build_info.json: {info}")
 
 
+# Godot's PWA service worker serves the cached build first and only switches to a new deploy once
+# every tab of the site has closed, so a plain reload kept players on a stale build. These edits make
+# a new deploy's worker fetch fresh files and take over at once (the game then reloads into it from
+# the title or calendar), and keep the unlisted /preview/ build, which sits inside its scope, uncached.
+SW_PATCHES = [
+    (
+        "event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(CACHED_FILES)));",
+        "event.waitUntil(caches.open(CACHE_NAME)"
+        ".then((cache) => cache.addAll(CACHED_FILES.map((f) => new Request(f, { cache: 'no-cache' }))))"
+        ".then(() => self.skipWaiting()));",
+    ),
+    (
+        "response = await self.fetch(event.request);",
+        "response = await self.fetch(event.request, { cache: 'no-cache' });",
+    ),
+    (
+        "const isNavigate = event.request.mode === 'navigate';",
+        "if (new URL(event.request.url).pathname.includes('/preview/')) {\n"
+        "\t\t\treturn;\n"
+        "\t\t}\n"
+        "\t\tconst isNavigate = event.request.mode === 'navigate';",
+    ),
+]
+
+
+def patch_service_worker() -> None:
+    worker = SITE / "index.service.worker.js"
+    if not worker.exists():
+        return
+    text = worker.read_text(encoding="utf-8")
+    if "self.skipWaiting()));" in text:
+        return
+    for old, new in SW_PATCHES:
+        if text.count(old) != 1:
+            raise SystemExit(f"service worker patch no longer applies (Godot template changed?): {old}")
+        text = text.replace(old, new)
+    worker.write_text(text, encoding="utf-8")
+    print("patched index.service.worker.js (fresh fetches, skip waiting, /preview/ uncached)")
+
+
 def assemble() -> None:
     if not (SITE / "index.html").exists():
         raise SystemExit("build/site/index.html missing: export the Web preset first")
@@ -63,6 +103,7 @@ def assemble() -> None:
     if (SITE / "preview" / "index.html").exists():
         (SITE / "preview" / "build.json").write_text(
             json.dumps({**common, "assets_base": "../generated/"}, indent=1), encoding="utf-8")
+    patch_service_worker()
     (SITE / ".nojekyll").write_text("", encoding="utf-8")
     for stray in SITE.rglob("*.import"):
         stray.unlink()

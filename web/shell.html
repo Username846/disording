@@ -281,6 +281,34 @@ const engine = new Engine(GODOT_CONFIG);
 		document.body.classList.add('rotate-dismissed');
 	});
 
+	// --- New deploys: the service worker (patched by tools/ci/assemble_site.py) takes over as soon as
+	// it installs. A newer active worker than the one that served this page means a newer build is
+	// ready; the game polls this flag and reloads when no day is being played. ---
+	window.__disordingUpdateReady = false;
+	if ('serviceWorker' in navigator) {
+		const flagUpdate = () => {
+			if (navigator.serviceWorker.controller) {
+				window.__disordingUpdateReady = true;
+			}
+		};
+		const watch = (worker) => {
+			if (worker) {
+				worker.addEventListener('statechange', () => { if (worker.state === 'activated') { flagUpdate(); } });
+			}
+		};
+		navigator.serviceWorker.getRegistration().then((reg) => {
+			if (!reg) {
+				return;
+			}
+			if (reg.active && reg.active !== navigator.serviceWorker.controller) {
+				flagUpdate();
+			}
+			watch(reg.installing);
+			watch(reg.waiting);
+			reg.addEventListener('updatefound', () => watch(reg.installing));
+		}).catch(() => {});
+	}
+
 	// --- iOS: play sound even when the ring/silent switch is on silent. ---
 	// Safari files Web Audio under "ambient" by default, and the switch mutes that.
 	if (navigator.audioSession) {

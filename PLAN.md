@@ -357,8 +357,16 @@ func state(n: int) -> DoorState:
   at runtime: on web it puts the browser-side sample buses in the wrong order and every Sample-playback sound goes
   silent. A unit test checks the layout and the browser smoke test measures real output for music and an SFX.
 - **Web buffer:** single-threaded web builds mix Stream audio on the main thread between frames, so
-  `audio/driver/output_latency.web = 150` (≈ 186 ms buffer) keeps music continuous down to ~10 fps. The beat clock
-  subtracts `AudioServer.get_output_latency()`, which includes this buffer.
+  `audio/driver/output_latency.web = 300` (16384 frames, ≈ 0.37 s) keeps music going through slow frames
+  (headless Chromium: continuous at 11 fps; Firefox, whose worklet messages wait longer behind rendering, drops out
+  far less than with smaller buffers). The beat clock subtracts `AudioServer.get_output_latency()`, which includes
+  this buffer.
+- **Fetching on web:** every `HTTPRequest` sets `accept_gzip = false`. GitHub Pages gzips JSON; the browser
+  inflates it but still reports `Content-Encoding: gzip`, and Godot would inflate it again and fail, which left the
+  live site with no manifest and no sound at all. The browser smoke test's server gzips text like Pages does.
+- **Updates:** Godot's service worker is cache-first and waits for every tab to close before a new deploy takes
+  over. `assemble_site.py` patches it to fetch fresh files, skip waiting and leave `/preview/` alone; the shell
+  flags a newer active worker and the game reloads into the new build from the title or calendar (never mid-day).
 - **Step 1 must benchmark** Stream vs Sample playback for music on the low-reference phone and record the result in
   `docs/STATUS.md`. If Stream stutters under main-thread load, fall back to Sample with mono 32 kHz music.
 

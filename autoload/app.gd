@@ -15,6 +15,8 @@ var safe_margins := Vector4.ZERO
 var test_mode := false
 
 var _js_callbacks: Array = []
+var _update_waiting := false
+var _reloading := false
 
 
 func _ready() -> void:
@@ -110,8 +112,37 @@ func _setup_web() -> void:
 	var on_visibility := JavaScriptBridge.create_callback(_on_visibility_change)
 	_js_callbacks.append(on_visibility)
 	document.addEventListener("visibilitychange", on_visibility)
+	if not test_mode:
+		var update_timer := Timer.new()
+		update_timer.wait_time = 3.0
+		update_timer.timeout.connect(_check_for_update)
+		add_child(update_timer)
+		update_timer.start()
+		Router.screen_changed.connect(func(_screen: Node) -> void: _apply_update_when_safe(), CONNECT_DEFERRED)
 	if is_dev():
 		_setup_test_api()
+
+
+## A newer build was deployed and its service worker has taken over (web/shell.html sets the flag).
+## Reload into it as soon as no day is being played, so nobody keeps running a stale cached build.
+func _check_for_update() -> void:
+	if _update_waiting or not JavaScriptBridge.eval("window.__disordingUpdateReady === true", true):
+		return
+	_update_waiting = true
+	_apply_update_when_safe()
+
+
+func _apply_update_when_safe() -> void:
+	if not _update_waiting or _reloading or Router.current == null or Router.current is DayHost:
+		return
+	_reloading = true
+	print("[disording] a new version is ready; reloading")
+	SaveService.save_now()
+	if Router.current is Control:
+		Toast.show_on(Router.current, "Updating to the newest version…", 3.0)
+	# Let the save reach IndexedDB before the page goes away.
+	await get_tree().create_timer(1.5, true, false, true).timeout
+	JavaScriptBridge.eval("window.location.reload()", true)
 
 
 func _on_visibility_change(_args: Array) -> void:

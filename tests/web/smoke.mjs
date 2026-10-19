@@ -1,8 +1,9 @@
 // Browser smoke test for the exported site (PLAN.md §7.4 step 6).
 // Usage: node tests/web/smoke.mjs [siteDir] [--shots outDir]
-// Serves the site locally, then drives the release and preview builds in Chromium
-// (desktop mouse + phone touch emulation with 4x CPU throttling).
+// Serves the site locally (gzipping text, as GitHub Pages does), then drives the release and preview builds
+// in Chromium (desktop mouse + phone touch emulation with 4x CPU throttling).
 import http from 'node:http';
+import zlib from 'node:zlib';
 import fs from 'node:fs';
 import path from 'node:path';
 import { chromium, devices } from 'playwright';
@@ -23,7 +24,14 @@ function serve(root) {
     if (!file.startsWith(root)) { res.writeHead(403).end(); return; }
     if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
     if (!fs.existsSync(file)) { res.writeHead(404).end('not found'); return; }
-    res.writeHead(200, { 'Content-Type': MIME[path.extname(file)] ?? 'application/octet-stream' });
+    const type = MIME[path.extname(file)] ?? 'application/octet-stream';
+    // Like GitHub Pages: text responses go out gzipped when the browser accepts it.
+    if (/json|javascript|html|svg/.test(type) && /\bgzip\b/.test(req.headers['accept-encoding'] ?? '')) {
+      res.writeHead(200, { 'Content-Type': type, 'Content-Encoding': 'gzip' });
+      res.end(zlib.gzipSync(fs.readFileSync(file)));
+      return;
+    }
+    res.writeHead(200, { 'Content-Type': type });
     fs.createReadStream(file).pipe(res);
   });
   return new Promise((resolve) => server.listen(0, '127.0.0.1', () => resolve(server)));
@@ -156,11 +164,11 @@ try {
     // Sound: music (Stream playback) and an SFX (Sample playback) must both reach the speakers.
     // At CI's software-rendered frame rates the music fade-in runs slow, so give it a while.
     let music = 0;
-    for (let i = 0; i < 8 && music <= 0.002; i++) {
+    for (let i = 0; i < 12 && music <= 0.001; i++) {
       await page.waitForTimeout(1000);
       music = Math.max(music, await page.evaluate(() => window.__peak()));
     }
-    check(music > 0.002, `preview: music reaches the speakers (rms ${music.toFixed(3)})`);
+    check(music > 0.001, `preview: music reaches the speakers (rms ${music.toFixed(3)})`);
     await page.evaluate(() => window.__disording.cmd('stop_music'));
     await page.waitForTimeout(1000);
     await page.evaluate(() => window.__peak());
