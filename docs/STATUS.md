@@ -33,7 +33,7 @@ Legend: ✅ done · 🟡 in progress · ⬜ todo
 
 | Step | Day | State | Clear median | fps (low ref) | Bundle | Notes |
 |---:|---|---|---|---|---|---|
-| 2 | Day 1 · Toybox Ring-Out | ⬜ todo | | | | |
+| 2 | Day 1 · Toybox Ring-Out | ✅ done | bot 7.4 min (skill .85, 9/12 wins, 6.5–9.0); humans TBD | CI only | 2.81 MB | 5 bouts, AI rivals, pickups, teeter edges, referee secret; kits extracted; template + door art |
 | 3 | Day 2 · Switchboard Company | ⬜ todo | | | | |
 | 4 | Day 3 · Graph Paper Grand Prix | ⬜ todo | | | | |
 | 5 | Day 4 · Downwind | ⬜ todo | | | | |

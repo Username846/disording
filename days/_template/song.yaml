@@ -1,0 +1,24 @@
+# TEMPLATE song spec: see tools/songsmith/README.md and days/day_001/song.yaml for a full example.
+title: "TEMPLATE"
+bpm: 110
+key: C major
+beats_per_bar: 4
+swing: 0.0
+seed: 1
+target_minutes: 4.0
+form: [intro, verse1, chorus, verse2, chorus, bridge, interlude, verse3, chorus, outro]
+loop: { from: verse1 }
+voice:
+  persona: female_solo
+instruments:
+  lead: { patch: modal.celesta, signature: true }
+sections:
+  intro:
+    bars: 4
+    chords: "C | Am | F | G"
+    parts:
+      lead: { pattern: arp_up, vel: 0.5 }
+stingers:
+  win: { from_section: chorus, bars: 2 }
+  lose: { tempo: 0.8, minor: true }
+sfx: {}

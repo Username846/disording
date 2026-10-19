@@ -82,7 +82,8 @@ def cmd_list(args: argparse.Namespace) -> int:
         print(f"  {name}" + (f" — {doc}" if doc else ""))
     print("Personas:")
     for name in sorted(PERSONAS):
-        print(f"  {name}")
+        doc = PERSONAS[name].get("doc", "")
+        print(f"  {name}" + (f" — {doc}" if doc else ""))
     return 0
 
 

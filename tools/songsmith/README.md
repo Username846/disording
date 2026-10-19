@@ -94,13 +94,24 @@ synthesized drums and percussion, noise utilities. Add a day's signature instrum
 `register("family.name", engine, **params)` call (or a new module imported in
 `patches/__init__.py`).
 
-**Voice personas** (`voice/personas.py`):
-- `warm_choir` (SATB, with harmony derived from the chords)
-- `child_choir`
-- `female_solo`
-- `male_crooner`
-- `robot_vocoder`
-- `whisper`
+**Voice personas** (`voice/personas.py`, `python -m songsmith list` prints each one's description):
+- general: `warm_choir` (SATB, harmony derived from the chords), `child_choir`, `female_solo`,
+  `male_crooner`, `robot_vocoder`, `whisper`
+- Days 1–10: `wind_up_child_choir` (1), `close_harmony_trio` (2), `city_pop_crooner` (3),
+  `breathy_folk_female` (4), `whisper_female` (5), `pop_female_hype` (6), `vocoder_robot` (7, alias),
+  `ring_mod_duet` (8), `trance_female` (9), `folk_tenor` (10)
+
+A persona is a list of `parts`, each singing a `line`: `melody`, `alto`/`tenor`/`bass` (hymn-style
+harmony) or `close1`/`close2` (the chord tones just below the melody, 1940s close harmony). Per part:
+`formant_scale`, `pan`, `gain_db`, `octave` (shift the line by octaves), `ring_mod_hz` (+
+`ring_mod_mix`). Singer parameters (`voice.singer.VoiceParams`) can be set on the persona or overridden
+from the spec's `voice:` block, including the clockwork options `wobble_rate`, `wobble_cents`,
+`wobble_amp` (a slow periodic pitch/level wobble) and `winddown_cents` (long notes droop at the end).
+
+**Toy-box patches (Day 1):** `modal.toy_piano` (signature), `modal.tin`, `reed.kazoo_section` (detuned
+kazoos; `reed.*` patches also take `voices`, `detune_cents` and a cup-mute `wah`), `brass.tuba`,
+`reed.slide_whistle` (`glide_from`/`glide_in` slide up into a note, `glide_to`/`glide_out` slide away),
+`reed.pea_whistle`, `fx.spring`, `fx.ratchet`, `fx.squeak`.
 
 The singer is a Klatt-style formant synthesizer driven by CMUdict pronunciations (`vendor/`,
 BSD-2). Write lyrics for it: open vowels on long notes, few consonant clusters. Lyrics are also

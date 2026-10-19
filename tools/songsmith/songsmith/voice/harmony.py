@@ -46,3 +46,28 @@ def harmonize(melody: list[int | None], chords: list[Chord | None]) -> dict[str,
             used.add(choice % 12)
             upper = choice
     return parts
+
+
+def close_harmony(melody: list[int | None], chords: list[Chord | None], count: int = 2) -> dict[str, list[int | None]]:
+    """Closed-position harmony (1940s vocal-group style): for every melody note, the next
+    ``count`` chord tones directly below it, all within an octave. Returns lines named
+    ``close1`` (nearest below) … ``close<count>``."""
+    parts: dict[str, list[int | None]] = {f"close{i + 1}": [] for i in range(count)}
+    for s, chord in zip(melody, chords):
+        if s is None or chord is None:
+            for line in parts.values():
+                line.append(None)
+            continue
+        below = [m for m in chord.tones_in_range(s - 12, s - 1) if m % 12 != s % 12]
+        below.sort(reverse=True)
+        picks: list[int] = []
+        for m in below:
+            if all(m % 12 != p % 12 for p in picks):
+                picks.append(m)
+            if len(picks) == count:
+                break
+        while len(picks) < count:  # thin chords: fall back to a third/sixth below
+            picks.append((picks[-1] if picks else s) - (3 if len(picks) % 2 == 0 else 4))
+        for i, m in enumerate(picks):
+            parts[f"close{i + 1}"].append(m)
+    return parts

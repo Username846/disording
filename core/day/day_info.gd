@@ -16,6 +16,9 @@ extends Resource
 @export var bundle_id := ""
 ## [main, accent, dark] colours used for the door art and intro card.
 @export var palette := PackedColorArray()
+## Optional procedural door art (a script with `func draw(ci: CanvasItem, rect: Rect2)`), drawn
+## behind a completed door. Takes precedence over `thumbnail`.
+@export var door_art: Script
 @export var thumbnail: Texture2D
 
 

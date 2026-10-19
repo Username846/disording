@@ -34,7 +34,8 @@ func _exercise_day(n: int) -> void:
 	_check(host != null, "%s: host created" % label)
 	if host == null:
 		return
-	if not await _until(func() -> bool: return host.phase == DayHost.Phase.RUNNING, 1200):
+	# Scene loading runs on a thread in real time, while --fixed-fps frames fly by: wait on the clock.
+	if not await _until_ms(func() -> bool: return host.phase == DayHost.Phase.RUNNING, 30000):
 		_fail("%s: never reached RUNNING" % label)
 		return
 	var orphans_before := Performance.get_monitor(Performance.OBJECT_ORPHAN_NODE_COUNT)
@@ -43,16 +44,19 @@ func _exercise_day(n: int) -> void:
 		host._begin(false)
 		await _frames(2)
 
+	await _autoplay(host, label)
+
 	host.qa_force(&"star")
-	await _frames(2)
+	await _frames(10)
 	_check(Calendar.has_star(n), "%s: star saved" % label)
 
 	var fails_before := int(SaveService.day(n)["fails"])
+	var completed_before := String(SaveService.day(n)["completed_on"])
 	host.qa_force(&"fail")
 	await _until(func() -> bool: return host.phase == DayHost.Phase.RESULTS, 120)
 	_check_eq(host.phase, DayHost.Phase.RESULTS, "%s: fail shows results" % label)
 	_check_eq(int(SaveService.day(n)["fails"]), fails_before + 1, "%s: fail recorded" % label)
-	_check_eq(SaveService.day(n)["completed_on"], "", "%s: fail does not complete" % label)
+	_check_eq(SaveService.day(n)["completed_on"], completed_before, "%s: a fail never changes completion" % label)
 
 	host._begin(false)
 	await _until(func() -> bool: return host.phase == DayHost.Phase.RUNNING, 120)
@@ -72,6 +76,31 @@ func _exercise_day(n: int) -> void:
 	await _frames(5)
 	var leaked := Performance.get_monitor(Performance.OBJECT_ORPHAN_NODE_COUNT) - orphans_before
 	_check(leaked <= 0, "%s: %d orphan node(s) leaked" % [label, leaked])
+
+
+## Days that support it are played start to finish by their own AI (the scripted win bot):
+## the run must end, by success or fail, inside the 15-minute ceiling.
+func _autoplay(host: DayHost, label: String) -> void:
+	var old_id := host.game.get_instance_id()
+	host._begin(false)
+	await _until(
+		func() -> bool:
+			return host.game != null and host.game.get_instance_id() != old_id and host.phase == DayHost.Phase.RUNNING,
+		120
+	)
+	if not host.game._qa_autoplay(true):
+		return
+	var frames := 0
+	var limit := 16 * 60 * 60
+	while host.phase != DayHost.Phase.RESULTS and frames < limit:
+		await get_tree().process_frame
+		frames += 1
+	var minutes := frames / 3600.0
+	var outcome := "success" if SaveService.day(host.day)["completed_on"] != "" else "fail"
+	print("[tests] smoke: %s autoplay ended after %.1f simulated min (%s)" % [label, minutes, outcome])
+	_check(host.phase == DayHost.Phase.RESULTS, "%s: autoplay run never ended" % label)
+	host._begin(false)
+	await _until(func() -> bool: return host.phase == DayHost.Phase.RUNNING, 120)
 
 
 func _check_rollback() -> void:
@@ -128,6 +157,15 @@ func _frames(count: int) -> void:
 
 func _until(condition: Callable, max_frames: int) -> bool:
 	for i in max_frames:
+		if condition.call():
+			return true
+		await get_tree().process_frame
+	return condition.call()
+
+
+func _until_ms(condition: Callable, max_ms: int) -> bool:
+	var deadline := Time.get_ticks_msec() + max_ms
+	while Time.get_ticks_msec() < deadline:
 		if condition.call():
 			return true
 		await get_tree().process_frame

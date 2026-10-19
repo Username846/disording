@@ -277,3 +277,9 @@ def place(buffer: np.ndarray, x: np.ndarray, start: int) -> None:
         buffer[s0 : s0 + n] += x[x0 : x0 + n]
     else:
         buffer[:, s0 : s0 + n] += x[..., x0 : x0 + n]
+
+
+def ring_mod(x: np.ndarray, hz: float, mix: float = 0.5) -> np.ndarray:
+    """Ring modulation (multiply by a sine carrier), blended with the dry signal."""
+    t = np.arange(len(x)) / SR
+    return x * (1.0 - mix) + x * np.sin(2 * math.pi * hz * t) * mix

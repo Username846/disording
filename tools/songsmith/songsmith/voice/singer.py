@@ -66,6 +66,12 @@ class VoiceParams:
     consonant_boost: float = 1.25
     bandwidth_scale: float = 1.0
     air: float = 0.12  # high-frequency source energy above the formant cascade (breathy "air")
+    # Clockwork character (wind-up toys): a slow periodic pitch/level wobble, and long
+    # notes that droop in pitch at their end as if the spring were running down.
+    wobble_rate: float = 0.0
+    wobble_cents: float = 0.0
+    wobble_amp: float = 0.0
+    winddown_cents: float = 0.0
     extra: dict = field(default_factory=dict)
 
 
@@ -412,6 +418,20 @@ def render(sylls: list[SungSyllable], params: VoiceParams, total_seconds: float,
     rate = params.vibrato_rate * (1 + 0.03 * np.sin(2 * math.pi * 0.23 * t))
     vib_phase = 2 * math.pi * np.cumsum(rate) / CR
     cents = params.vibrato_cents * _smooth(vib, 0.05) * np.sin(vib_phase) + params.drift_cents * walk
+    if params.wobble_rate > 0 and (params.wobble_cents > 0 or params.wobble_amp > 0):
+        wob_phase = 2 * math.pi * params.wobble_rate * t
+        cents = cents + params.wobble_cents * np.sin(wob_phase)
+        dyn = dyn * (1.0 - params.wobble_amp * 0.5 * (1.0 + np.cos(wob_phase)))
+    if params.winddown_cents > 0:
+        droop = np.zeros(nf)
+        for v0, v1, _note in spans:
+            length = v1 - v0
+            if length > 0.45:
+                sl = _frames(v0 + 0.55 * length, v1, nf)
+                if sl.stop > sl.start:
+                    k = np.linspace(0.0, 1.0, sl.stop - sl.start)
+                    droop[sl] = np.minimum(droop[sl], -params.winddown_cents * k**2)
+        cents = cents + _smooth(droop, 0.03)
     f0 = 440.0 * 2 ** ((semis - 69 + cents / 100.0) / 12)
 
     scale = params.formant_scale

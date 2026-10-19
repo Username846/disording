@@ -45,6 +45,7 @@ var _redraw_accum := 0.0
 var _scroll_tween: Tween
 var _font: Font
 var _bold: Font
+var _door_art: Dictionary = {}  # day -> door art instance
 
 
 func _ready() -> void:
@@ -338,6 +339,9 @@ func _draw_interior(rect: Rect2, info: DayInfo, full: bool) -> void:
 		draw_rect(gap.grow_individual(0, -rect.size.x * 0.3, 0, -3), Color(Pal.GOLD, 0.45))
 		return
 	_draw_arch(rect.grow(-4.0), main)
+	if info != null and info.door_art != null:
+		_draw_door_art(info, rect.grow(-4.0))
+		return
 	if info != null and info.thumbnail != null:
 		draw_texture_rect(info.thumbnail, rect.grow(-6.0), false)
 		return
@@ -348,6 +352,22 @@ func _draw_interior(rect: Rect2, info: DayInfo, full: bool) -> void:
 	var at := Vector2(rect.get_center().x - tw * 0.5, rect.get_center().y + fs * 0.35)
 	draw_string(_bold, at + Vector2(2, 3), letter, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Color(dark, 0.8))
 	draw_string(_bold, at, letter, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Pal.SNOW)
+
+
+## Day-provided art, clipped to the arch by painting the two top corners back over it.
+func _draw_door_art(info: DayInfo, rect: Rect2) -> void:
+	if not _door_art.has(info.day):
+		_door_art[info.day] = info.door_art.new()
+	_door_art[info.day].draw(self, rect)
+	var r := rect.size.x * 0.5
+	var c := Vector2(rect.position.x + r, rect.position.y + r)
+	var mask := info.color(2, Pal.NIGHT)
+	for corner: Array in [[rect.position, PI], [Vector2(rect.end.x, rect.position.y), PI * 1.5]]:
+		var pts := PackedVector2Array([corner[0]])
+		for i in 7:
+			var a: float = corner[1] + (PI * 0.5) * i / 6.0
+			pts.append(c + Vector2(cos(a), sin(a)) * r)
+		draw_colored_polygon(pts, mask)
 
 
 ## The door leaf swung open on its left hinge: the arch squashed toward the hinge.

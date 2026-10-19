@@ -140,6 +140,20 @@ try {
     await page.evaluate(() => window.__disording.cmd('goto_calendar', 1));
     s = await waitState(page, (st) => st.screen === 'calendar', 10000);
     check(Array.isArray(s.playable) && s.stars === 0, `preview: calendar after day 0 (stars ${s.stars})`);
+    // Every built day (1+) boots, plays a few seconds with its own AI, and its secret works.
+    for (const day of (await page.evaluate(() => fetch('build.json').then((r) => r.json()))).days ?? []) {
+      await page.evaluate((d) => window.__disording.cmd('start_day', d), day);
+      s = await waitState(page, (st) => st.screen === 'day' && st.day === day && st.state === 'running', 60000);
+      check(s.state === 'running', `preview: day ${day} runs`);
+      await page.evaluate(() => window.__disording.cmd('autoplay', true));
+      await page.waitForTimeout(4000);
+      await shot(page, `preview_day${day}`);
+      await page.evaluate(() => window.__disording.cmd('force', 'star'));
+      s = await waitState(page, (st) => st.star === true, 8000);
+      check(s.star === true, `preview: day ${day} secret star`);
+      await page.evaluate((d) => window.__disording.cmd('goto_calendar', d), day);
+      await waitState(page, (st) => st.screen === 'calendar', 10000);
+    }
     await page.close();
   }
   // 3. Release build on a phone: touch + 4x CPU throttle.

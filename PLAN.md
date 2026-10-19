@@ -100,14 +100,14 @@ menu/                       # boot, title, calendar, door, day_intro, results, s
 days/
   _template/                # copied for each new day (made in Step 2 from Day 1)
   day_000/                  # "Test Room": debug-only fixture for the contract (excluded from release)
-  day_001/ … day_100/       # info.tres, game.tscn, game.gd, parts/, song.yaml, thumbnail.webp, README.md
+  day_001/ … day_100/       # info.tres, game.tscn, game.gd, parts/, song.yaml, door_art.gd
 music/menu/song.yaml        # calendar theme spec
 generated/                  # .gdignore'd. Songsmith output: per-day bundles (gitignored)
 tools/                      # .gdignore'd (Godot never scans it)
   songsmith/                # Python package: offline music, voice and SFX renderer (section 6)
   ci/                       # fetch_godot.py, godot_tests.sh, build_web.sh, assemble_site.py,
                             #   check_budgets.py, gen_day_stubs.py
-dev/                        # Godot-side dev scripts: make_icons.gd, capture_thumbnail.gd (Step 2)
+dev/                        # Godot-side dev scripts: make_icons.gd, day1_sim.tscn (headless tuning harness)
 tests/
   test_runner.tscn          # unit tests + platform smoke (run with --fixed-fps 60 -- --test)
   script_check.tscn         # compiles every script with autoloads active
@@ -600,7 +600,7 @@ Each day step follows the same nine moves. Step 1 turns this into `docs/HOW_TO_A
    any non-trivial rules (scoring, AI decisions, recognizers).
 8. **Perf and length pass:** preview build in Chrome at 4× CPU throttle with Pixel emulation, ≥ 30 fps and ≤ 150 draw
    calls in the worst phase. Bundle ≤ 3.5 MB. Main pack stays within its 12 MB budget. Telemetry shows a 5–15 min clear.
-9. **Ship:** run `dev/capture_thumbnail.gd` (built in Step 2) to make `thumbnail.webp`, update the `docs/STATUS.md` row, commit, push and
+9. **Ship:** add the day's procedural `door_art.gd` (drawn behind its door once completed), update the `docs/STATUS.md` row, commit, push and
    check the deployed preview.
 
 ---
@@ -696,7 +696,10 @@ Build Day 1 exactly as in `docs/GAMES.md`, then turn it into the template every 
 - Tune the duration to a ~11 min median with three phases of AI difficulty.
 - Write a **scripted secret test** (the referee ring-out) and a **scripted win bot** for the smoke test. This sets the
   pattern for every later day.
-- Add `dev/capture_thumbnail.gd`, which renders a day headlessly into its ≤ 12 KB `thumbnail.webp` door art.
+- Door art is procedural: each day ships a tiny `door_art.gd` (`func draw(ci, rect)`) that the calendar draws behind
+  its completed door. No image files, no capture tool. (Built in Step 2 instead of the thumbnail capture tool.)
+- A headless tuning harness (`dev/day1_sim.tscn`) plays whole runs with the autopilot at several skill levels and
+  reports bout lengths, win rates and ring-out causes. Later days copy the pattern.
 
 ### Steps 3–101: one day each
 

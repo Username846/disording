@@ -1,0 +1,287 @@
+# Day 1 "Toybox Ring-Out" — "Off the Edge". Rendered by tools/songsmith → generated/day_001.<hash>.bundle.zip
+# Tin-toy swing: toy piano (signature), kazoo section, tuba oom-pah, brushes, slide whistle fills.
+title: "Off the Edge"
+bpm: 132
+key: F major
+beats_per_bar: 4
+swing: 0.15
+seed: 1001
+target_minutes: 4.0
+form: [intro, verse1, pre, chorus, kazoo_break, verse2, pre, chorus, inter_a1, inter_a2, bridge, chorus,
+       verse3, pre, chorus, inter_b1, inter_b2, chorus_tag, turnaround]
+loop: { from: verse1 }
+
+voice:
+  persona: wind_up_child_choir
+  gain_db: 1.0
+
+reverb: { rt60: 1.6, predelay: 0.02, damping_hz: 6500, wet_db: -6 }
+
+instruments:
+  toy_piano:  { patch: modal.toy_piano, signature: true, pan: -0.2, gain_db: 0, reverb: 0.3 }
+  kazoos:     { patch: reed.kazoo_section, pan: 0.25, gain_db: -4, reverb: 0.22 }
+  tuba:       { patch: brass.tuba, pan: 0.0, gain_db: -1, reverb: 0.1 }
+  kit:        { patch: drums.kit, gain_db: -6, reverb: 0.14 }
+  blocks:     { patch: perc.woodblock, pan: 0.3, gain_db: -11, reverb: 0.1 }
+  wind_key:   { patch: fx.ratchet, pan: -0.4, gain_db: -9, reverb: 0.1 }
+  slide_up:   { patch: reed.slide_whistle, glide_from: -12, glide_in: 0.3, pan: 0.4, gain_db: -7, reverb: 0.3 }
+  slide_down: { patch: reed.slide_whistle, glide_to: -14, pan: -0.4, gain_db: -7, reverb: 0.3 }
+
+sections:
+  intro:
+    bars: 4
+    chords: "F | D7 | G7 C7 | F"
+    parts:
+      wind_key: { grid: "x.......", bars: [1], vel: 0.9 }
+      toy_piano: { line: "_:1 F5:0.5 A5:0.5 C6:1 A5:1 F#5:1 A5:1 D6:2 B5:0.5 D6:0.5 G5:1 Bb5:1 C6:1 A5:1 F5:1 _:2", vel: 0.7 }
+      tuba: { pattern: root, vel: 0.6, bars: [3, 4] }
+      kit: { grid: { brush: "o.o.o.x." }, vel: 0.6 }
+      slide_up: { line: "_:14 C6:2", vel: 0.7 }
+
+  verse1:
+    bars: 8
+    chords: "F | D7 | G7 | C7 | F | D7 | G7 C7 | F"
+    parts:
+      toy_piano: { pattern: comp_offbeat, vel: 0.42 }
+      tuba: { pattern: root_fifth_2feel, vel: 0.8 }
+      kit: { grid: { kick: "x...x...", brush: "o.X.o.X." }, vel: 0.7 }
+    melody: |
+      Turn:A4:1 the:A4:0.5 key:C5:0.5 and:A4:1 hear:F4:1 me:F#4:1 tick,:A4:2 _:1
+      on:B4:1 the:B4:0.5 pil-:D5:0.5 low,:B4:1 soft:G4:1 and:Bb4:1 thick.:G4:2 _:1
+      Bear:A4:1 and:A4:0.5 Di{D AY1}-:C5:0.5 no{N OW0}:F5:1 in:C5:1 a:A4:1 row,:F#4:2 _:1
+      one:G4:1 good:A4:0.5 flick:B4:0.5 and:C5:1 off:Bb4:1 they:A4:1 go!:F4:2 _:1
+
+  verse2:
+    extends: verse1
+    parts:
+      toy_piano: { pattern: arp_updown, rate: 0.5, vel: 0.32 }
+      blocks: { grid: "..x...x.", vel: 0.5 }
+    melody: |
+      Up:F4:0.5 on:G4:0.5 the:A4:1 book:C5:1 shelf,:A4:1 nar-:F#4:1 row:A4:1 way,:C5:2
+      Nin-:B4:1 ja:G4:0.5 spins:B4:0.5 and:D5:1 Bear:B4:1 says:Bb4:1 hey!:G4:2 _:1
+      Splash!:C5:1 In:A4:0.5 the:A4:0.5 bath-:F4:1 tub,:A4:1 rub-:F#4:1 ber:A4:1 duck,:D5:2
+      sli-:G4:0.5 ding:A4:0.5 a{AH0}-:B4:0.5 round,{R AW1 N D}:D5:1.5 so:C5:0.5 wish:Bb4:0.5 me:A4:1 luck!:F4:2 _:1
+
+  verse3:
+    extends: verse1
+    parts:
+      blocks: { grid: "x.x.x.x.", vel: 0.45 }
+    melody: |
+      Round:A4:1 the:A4:0.5 track:C5:0.5 the:A4:1 lit-:F4:1 tle:F#4:1 train,:A4:2 _:1
+      choo:D5:1 choo,:B4:0.5 bump,:G4:1.5 and:B4:1 round:C5:1 a-:Bb4:1 gain.:G4:1 _:1
+      On:A4:0.5 the:A4:0.5 lid:C5:1 the:A4:1 cham-:F4:1 pi-:F#4:1 on:A4:1 springs,:D5:2
+      tip:G4:1 it,:A4:0.5 tilt:B4:0.5 it,:D5:1 up:C5:0.5 she:Bb4:0.5 swings!:A4:1 -:F4:2 _:1
+
+  pre:
+    bars: 4
+    chords: "Bb | Bdim | F/C | C7"
+    parts:
+      toy_piano: { pattern: chord_bells, rate: 0.25, vel: 0.45 }
+      kazoos: { pattern: pad_sustain, vel: 0.26 }
+      tuba: { pattern: root, vel: 0.75 }
+      kit: { grid: { brush: "o.o.o.o.|o.o.o.o.|o.o.o.o.|X.X.X.X." }, vel: 0.65 }
+      slide_up: { line: "_:14 F6:2", vel: 0.55 }
+    melody: |
+      Wind{W AY1 N}-:D5:1 ing,{D IH0 NG}:Bb4:1 wind{W AY1 N}-:D5:1 ing,{D IH0 NG}:Bb4:1 tight-:D5:1 er:B4:1 still,:F4:2
+      hold:C5:1 your:A4:0.5 breath:C5:0.5 and:F5:1 here's:E5:1 the:D5:0.5 thrill!:C5:2.5 _:1
+
+  chorus:
+    bars: 8
+    chords: "Bb | F | G7 | C7 | F | D7 | G7 C7 | F"
+    parts:
+      toy_piano: { melody_double: true, octave_shift: 1, vel: 0.35, legato: 0.6 }
+      kazoos: { pattern: comp_offbeat, vel: 0.32 }
+      tuba: { pattern: root_fifth_2feel, vel: 0.85 }
+      kit: { grid: { kick: "x...x...", brush: "o.X.o.Xo", hat: "..x...x." }, vel: 0.75 }
+    melody: |
+      Off:F5:1 the:D5:0.5 edge,:Bb4:1.5 off:F5:1 the:C5:0.5 edge,:A4:2.5 _:1
+      wind{W AY1 N D}:G4:1 me:A4:0.5 up:B4:0.5 and:D5:1 watch:F5:1 me:E5:1 go!:C5:2 _:1
+      Off:C5:1 the:A4:0.5 edge,:F4:1.5 off:C5:1 the:A4:0.5 edge,:F#4:2.5 _:1
+      round:G4:1 and:B4:0.5 round:D5:1.5 and:C5:0.5 off:Bb4:0.5 you:A4:1 go!:F4:2 _:1
+
+  chorus_tag:
+    extends: chorus
+    melody: |
+      Off:F5:1 the:D5:0.5 edge,:Bb4:1.5 off:F5:1 the:C5:0.5 edge,:A4:2.5 _:1
+      wind{W AY1 N D}:G4:1 me:A4:0.5 up:B4:0.5 and:D5:1 watch:F5:1 me:E5:1 go!:C5:2 _:1
+      Off:C5:1 the:A4:0.5 edge,:F4:1.5 off:C5:1 the:A4:0.5 edge,:F#4:2.5 _:1
+      last:G4:0.5 one:A4:0.5 stand-:B4:1 ing:D5:1 steals:C5:0.5 the:Bb4:0.5 show!:A4:2 -:F4:1 _:1
+
+  kazoo_break:
+    bars: 8
+    chords: "F | D7 | G7 | C7 | F | D7 | G7 C7 | F"
+    parts:
+      kazoos: { melody_of: verse1, octave_shift: 0, vel: 0.7 }
+      toy_piano: { pattern: comp_offbeat, vel: 0.4 }
+      tuba: { pattern: root_fifth_2feel, vel: 0.8 }
+      kit: { grid: { kick: "x...x...", brush: "o.X.o.X." }, vel: 0.7 }
+      slide_down: { line: "_:28 C7:2 _:2", vel: 0.6 }
+
+  inter_a1:
+    bars: 8
+    chords: "Bb | F | G7 | C7 | F | D7 | G7 C7 | F"
+    parts:
+      toy_piano: { melody_of: chorus, octave_shift: 1, vel: 0.75 }
+      kazoos: { pattern: comp_offbeat, vel: 0.3 }
+      tuba: { pattern: walking, vel: 0.8 }
+      kit: { grid: { kick: "x...x...", brush: "o.X.o.Xo", hat: "..x...x." }, vel: 0.72 }
+
+  inter_a2:
+    bars: 8
+    chords: "F | D7 | G7 | C7 | F | D7 | G7 C7 | F"
+    parts:
+      kazoos:
+        vel: 0.62
+        line: >-
+          A4+C5:0.5 A4+C5:0.5 _:0.5 F4+A4:0.5 A4+C5:1 _:1
+          A4+C5:0.5 A4+D5:0.5 _:0.5 F#4+A4:0.5 F#4+C5:1 _:1
+          B4+D5:0.5 B4+D5:0.5 _:0.5 G4+B4:0.5 B4+F5:1 _:1
+          Bb4+E5:0.5 Bb4+E5:0.5 _:0.5 G4+C5:0.5 E4+G4:2
+          A4+C5:0.5 A4+C5:0.5 _:0.5 F4+A4:0.5 A4+C5:1 _:1
+          A4+C5:0.5 A4+D5:0.5 _:0.5 F#4+A4:0.5 F#4+C5:1 _:1
+          B4+D5:0.5 B4+D5:0.5 G4+B4:1 Bb4+E5:0.5 Bb4+E5:0.5 G4+C5:1
+          A4+F5:2 _:2
+      toy_piano: { pattern: arp_updown, rate: 0.5, vel: 0.33 }
+      tuba: { pattern: root, vel: 0.85 }
+      kit: { grid: { kick: "X.......", brush: "X......o" }, vel: 0.75 }
+
+  bridge:
+    bars: 8
+    chords: "Dm | A7 | Dm | A7 | Bb | F | G7 | C7"
+    parts:
+      toy_piano: { pattern: block, vel: 0.3 }
+      kazoos: { pattern: pad_sustain, vel: 0.2 }
+      tuba: { pattern: root, vel: 0.7 }
+      kit: { grid: { brush: "o...o..." }, vel: 0.5 }
+    melody: |
+      Tick,:D5:1 tock,:A4:1 slow-:F4:1 ing:D4:1 down,:E4:3 _:1
+      springs:F4:1 a-:E4:0.5 sleep,:D4:1.5 I'm:F4:0.5 on:A4:0.5 the:G4:1 ground,:E4:2 _:1
+      turn:D5:1 the:D5:0.5 key:F5:1.5 a-:D5:0.5 gain,:Bb4:0.5 a-:C5:1 gain,:A4:2 _:1
+      up:G4:1 I:B4:0.5 bounce:D5:1.5 to:F5:1 fight:E5:1 a-:D5:0.5 gain!:C5:2.5
+
+  inter_b1:
+    bars: 8
+    chords: "F | D7 | G7 | C7 | F | D7 | G7 C7 | F"
+    parts:
+      blocks: { grid: "x.x.x.x.", vel: 0.7 }
+      slide_up: { line: "_:3 C6:1 _:4", vel: 0.5 }
+      toy_piano: { melody_of: verse2, octave_shift: 1, vel: 0.62 }
+      tuba: { pattern: root_fifth_2feel, vel: 0.8 }
+      kit: { grid: { brush: "o.X.o.X." }, vel: 0.6 }
+
+  inter_b2:
+    bars: 8
+    chords: "Bb | F | G7 | C7 | F | D7 | G7 C7 | F"
+    parts:
+      kazoos: { melody_of: chorus, octave_shift: 0, vel: 0.72 }
+      toy_piano: { pattern: arp_up, rate: 0.5, vel: 0.35 }
+      tuba: { pattern: walking, vel: 0.8 }
+      kit: { grid: { kick: "x...x...", brush: "o.X.o.Xo", hat: "..x...x." }, vel: 0.75 }
+      slide_up: { line: "_:30 C6:2", vel: 0.6 }
+
+  turnaround:
+    bars: 4
+    chords: "Bb | Bdim | F/C | C7"
+    parts:
+      toy_piano: { pattern: chord_bells, rate: 0.5, vel: 0.5 }
+      tuba: { pattern: root, vel: 0.75 }
+      kit: { grid: { brush: "o.X.o.X." }, vel: 0.6 }
+      wind_key: { grid: "....x...", bars: [4], vel: 0.8 }
+      slide_up: { line: "_:14 C6:2", vel: 0.6 }
+
+stingers:
+  win:
+    bars: 2
+    chords: "Bb C7 | F"
+    parts:
+      toy_piano: { pattern: chord_bells, rate: 0.25, vel: 0.7 }
+      kazoos: { pattern: block, vel: 0.42 }
+      tuba: { pattern: root, vel: 0.85 }
+      kit: { grid: { kick: "x...x...", brush: "o.X.o.X." }, vel: 0.75 }
+    melody: |
+      Crown:F5:1 on:D5:0.5 the:Bb4:0.5 toy:C5:1 box!:E5:1 -:F5:3 _:1
+  lose:
+    bars: 2
+    bpm: 100
+    chords: "Dm | A7 Dm"
+    parts:
+      kazoos: { pattern: block, vel: 0.32 }
+      tuba: { pattern: root, vel: 0.7 }
+      toy_piano: { pattern: chord_bells, rate: 0.5, vel: 0.35 }
+    melody: |
+      Wind{W AY1 N D}:A4:1 me:F4:1 up:D4:1 a-:E4:1 gain.:D4:3 _:1
+
+# Sound effects — all from the day's toy-box family (toy piano, kazoos, tin, slide whistle, springs).
+sfx:
+  flick:
+    events:
+      - { patch: fx.spring, note: G4, dur: 0.22, vel: 0.9, wobble_hz: 22, depth: 0.25, decay: 0.15, drop: 0.3 }
+      - { patch: modal.tin, note: C6, dur: 0.05, vel: 0.35 }
+    length: 0.4
+    reverb: 0.08
+  wind: { events: [{ patch: fx.ratchet, dur: 0.28, vel: 0.8 }], length: 0.35, reverb: 0.05 }
+  ready: { events: [{ patch: modal.toy_piano, note: C7, dur: 0.12, vel: 0.6, tail: 0.4 }], length: 0.45, gain_db: -3 }
+  hit_light: { events: [{ patch: modal.tin, note: E6, dur: 0.06, vel: 0.7 }], length: 0.35, reverb: 0.08 }
+  hit_heavy:
+    events:
+      - { patch: modal.tin, note: A4, dur: 0.1, vel: 1.0 }
+      - { patch: perc.tom, note: C2, vel: 0.9 }
+      - { patch: modal.tin, note: D#5, t: 0.012, dur: 0.08, vel: 0.6 }
+    length: 0.6
+    reverb: 0.1
+  ringout: { events: [{ patch: reed.slide_whistle, note: C7, dur: 0.75, vel: 0.85, glide_to: -24, glide_out: 0.7 }], length: 0.85 }
+  respawn:
+    events:
+      - { patch: perc.woodblock, note: C6, vel: 0.8 }
+      - { patch: reed.slide_whistle, note: G6, t: 0.05, dur: 0.35, vel: 0.7, glide_from: -12, glide_in: 0.3 }
+    length: 0.55
+  pickup:
+    events:
+      - { patch: modal.toy_piano, note: C6, dur: 0.08, vel: 0.6, tail: 0.3 }
+      - { patch: modal.toy_piano, note: E6, t: 0.05, dur: 0.08, vel: 0.65, tail: 0.3 }
+      - { patch: modal.toy_piano, note: G6, t: 0.1, dur: 0.08, vel: 0.7, tail: 0.3 }
+      - { patch: modal.toy_piano, note: C7, t: 0.15, dur: 0.2, vel: 0.8, tail: 0.4 }
+    length: 0.7
+    reverb: 0.25
+  whistle: { events: [{ patch: reed.pea_whistle, note: G7, dur: 0.38, vel: 0.9 }], length: 0.45, reverb: 0.1 }
+  bout_win:
+    events:
+      - { patch: reed.kazoo_section, note: C5, t: 0.0, dur: 0.12, vel: 0.8 }
+      - { patch: reed.kazoo_section, note: E5, t: 0.14, dur: 0.12, vel: 0.8 }
+      - { patch: reed.kazoo_section, note: G5, t: 0.28, dur: 0.12, vel: 0.85 }
+      - { patch: reed.kazoo_section, note: C6, t: 0.42, dur: 0.6, vel: 0.9 }
+      - { patch: modal.toy_piano, note: C6, t: 0.42, dur: 0.5, vel: 0.7, tail: 0.6 }
+      - { patch: modal.toy_piano, note: E6, t: 0.42, dur: 0.5, vel: 0.6, tail: 0.6 }
+      - { patch: modal.toy_piano, note: G6, t: 0.42, dur: 0.5, vel: 0.6, tail: 0.6 }
+    length: 1.5
+    reverb: 0.25
+  bout_lose:
+    events:
+      - { patch: reed.kazoo_section, note: G4, t: 0.0, dur: 0.3, vel: 0.7, wah: 0.9 }
+      - { patch: reed.kazoo_section, note: F#4, t: 0.33, dur: 0.3, vel: 0.7, wah: 0.9 }
+      - { patch: reed.kazoo_section, note: F4, t: 0.66, dur: 0.3, vel: 0.7, wah: 0.9 }
+      - { patch: reed.kazoo_section, note: E4, t: 1.0, dur: 0.5, vel: 0.75, wah: 0.9, wah_time: 0.35 }
+    length: 1.6
+    reverb: 0.2
+  countdown: { events: [{ patch: perc.woodblock, note: G5, vel: 0.7 }], length: 0.25, reverb: 0.05, gain_db: -3 }
+  go:
+    events:
+      - { patch: modal.toy_piano, note: C7, dur: 0.3, vel: 0.85, tail: 0.5 }
+      - { patch: fm.bell, note: C6, dur: 0.3, vel: 0.5, tail: 0.6 }
+      - { patch: reed.kazoo_section, note: G5, t: 0.0, dur: 0.12, vel: 0.6 }
+    length: 0.75
+    reverb: 0.2
+  squeak:
+    events:
+      - { patch: fx.squeak, note: C6, dur: 0.18, vel: 0.9 }
+      - { patch: fx.squeak, note: E6, t: 0.2, dur: 0.12, vel: 0.7 }
+    length: 0.45
+  train:
+    events:
+      - { patch: reed.slide_whistle, note: A5, dur: 0.5, vel: 0.6, glide_to: -1.5, glide_out: 0.3, breath: 0.3, harmonics: 0.15 }
+      - { patch: reed.slide_whistle, note: C#6, dur: 0.5, vel: 0.55, glide_to: -1.5, glide_out: 0.3, breath: 0.3, harmonics: 0.15 }
+      - { patch: reed.slide_whistle, note: E6, dur: 0.5, vel: 0.5, glide_to: -1.5, glide_out: 0.3, breath: 0.3, harmonics: 0.15 }
+    length: 0.65
+    reverb: 0.2
+  spring: { events: [{ patch: fx.spring, note: C3, dur: 0.5, vel: 1.0, wobble_hz: 11, depth: 0.45, decay: 0.4, drop: 0.2 }], length: 0.7 }
+  tilt: { events: [{ patch: noise.creak, dur: 0.45, vel: 0.8, rate_start: 25, rate_end: 55 }], length: 0.5, gain_db: -2 }

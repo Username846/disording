@@ -6,8 +6,8 @@ This is the per-day recipe (PLAN.md §9) with code pointers. Each step from 2 to
 
 - Read the day's brief in [`GAMES.md`](GAMES.md): pitch, controls, run, win/lose, secret, song.
 - Read [`../PLAN.md`](../PLAN.md) §4.3 (no easier mode), §5 (one-pointer rule) and §8 (design rules).
-- Copy `days/_template/` to `days/day_NNN/` (Step 2 creates the template from Day 1; until then
-  `days/day_000/` shows the contract in use).
+- Copy `days/_template/` to `days/day_NNN/` (game skeleton with phases, checkpoints and QA hooks, door art, song
+  skeleton, checklist). `days/day_001/` is the full reference implementation.
 
 ## 1. Song: `days/day_NNN/song.yaml`
 
@@ -28,8 +28,8 @@ PYTHONPATH=tools/songsmith python -m songsmith check days/day_NNN/song.yaml
 
 ## 2. Door info: `days/day_NNN/info.tres`
 
-The stub already has the title, genre, pitch, estimate, palette, `scene_path` and `bundle_id`. Add three
-`hints` as `"icon|Text"` pairs. Icons are `tap`, `double_tap`, `hold`, `drag`, `flick`, `swipe`, `draw`, `pinch` and
+The stub already has the title, genre, `inspired_by`, pitch, estimate, palette, `scene_path` and `bundle_id`.
+Add three `hints` as `"icon|Text"` pairs and point `door_art` at the day's `door_art.gd` (see `days/day_001/info.tres`). Icons are `tap`, `double_tap`, `hold`, `drag`, `flick`, `swipe`, `draw`, `pinch` and
 `timer`. Once `game.tscn` exists, `tools/ci/gen_day_stubs.py` stops touching this file.
 
 ## 3. The game: `days/day_NNN/game.tscn` + `game.gd`
@@ -51,10 +51,18 @@ The root node's script `extends DayGame` (`core/day/day_game.gd`). Use only `ctx
 
 Rules:
 
+- Day scripts never declare `class_name` (a hundred days would collide in the global namespace). Preload
+  siblings instead: `const Bout := preload("res://days/day_NNN/parts/bout.gd")`.
+- Keep the top ~120 px strip clear: that's the HUD (lives, phase, "Inspired by …", pause).
 - Code under `days/day_NNN/` may use `core/**` but never another day's folder. When a second day needs the same
   code, move it to `core/kits/`.
 - Draw art procedurally or keep it tiny. The whole day should add 150 KB or less to the main pack.
-- Override `_qa_force(&"star")` so it performs the **real** secret trigger, the way Day 0 taps its moon.
+- Override `_qa_force(&"star")` so it performs the **real** secret trigger, the way Day 1 knocks the referee over the
+  edge.
+- Implement `_qa_jump(index)` (the dev panel and screenshots jump to a phase) and `_qa_autoplay(enabled)` (an AI
+  plays the player's side; the smoke test uses it as the scripted win bot and checks the run ends within 15 min).
+- Shared kits live in `core/kits/`: `CircleWorld`/`CircleBody` (top-down circle physics), `StateMachine`, `Juice`
+  (shake, hit-stop, popups, confetti).
 
 ## 4. Test it
 
@@ -67,6 +75,10 @@ cd tests/web && node smoke.mjs ../../build/site --shots ../../build/shots
 Add `tests/unit/test_day_NNN.gd` for any non-trivial rules (scoring, AI decisions, recognizers).
 
 ## 5. Tune and ship
+
+- Write a headless harness like `dev/day1_sim.gd`: it plays whole runs at several autopilot skills in seconds and
+  prints run length, win rate and how players lose. Tune until the expert bot's fastest clear is ≥ 5 min and its
+  median sits around 7–8 min (humans are slower; aim for an 8–12 min human median).
 
 - Play the preview build (`/preview/`). The 🛠 dev panel can jump to the day, fake the date and show the perf
   HUD and telemetry. Aim for a first-clear median of 8–12 min, never under 5 or over 15.

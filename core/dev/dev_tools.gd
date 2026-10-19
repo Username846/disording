@@ -20,6 +20,14 @@ static func run_command(command: String, arg: Variant = null) -> void:
 			Clock.set_fake_date(str(arg) if arg != null else "")
 		"shift_date":
 			Clock.set_fake_date(IsoDate.add_days(Clock.today(), int(arg)))
+		"jump":
+			var day_host := Router.current as DayHost
+			if day_host != null and day_host.game != null:
+				day_host.game._qa_jump(int(arg))
+		"autoplay":
+			var auto_host := Router.current as DayHost
+			if auto_host != null and auto_host.game != null:
+				auto_host.game._qa_autoplay(bool(arg))
 		"force":
 			var host := Router.current as DayHost
 			if host != null:

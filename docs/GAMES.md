@@ -38,8 +38,10 @@ intro card, in the HUD while playing, and in the pause menu.
 
 - **Pitch:** Wind-up toys brawl on household battlefields. You don't press attack buttons; you *flick* your tin knight like
   a marble. Each hit adds damage %, and the more damage a toy has, the farther it flies. Ring everyone out.
-- **Controls:** Press on your toy, drag back to aim (a dotted arc shows power), release to launch. A wind-up key on your toy
-  shows when the next flick is ready (about 1.2 s recharge), so the game runs in real time without turns or spam.
+- **Controls:** Drag back from anywhere on the screen to aim like a slingshot (dotted line = direction and power) and
+  release to launch. A ring on your toy refills as its wind-up key turns (about 1.2 s); letting go a moment early fires as
+  soon as it's wound. The game runs in real time, without turns or spam. A toy that drifts slowly over an edge teeters
+  and is pulled back, so only a real knock rings anyone out.
 - **Run:** A five-bout tournament, 2–2.5 min each: **Pillow Fort** (soft bouncy edges), **Bookshelf** (narrow, books slide),
   **Bathtub** (slippery, a floating rubber duck bumper), **Train Set** (moving platform loop) and **Toy Box Lid** (the final
   bout; the lid tilts toward the heavier side). Rivals: rubber dino (heavy), yo-yo ninja (fast), plush bear (bouncy), dash

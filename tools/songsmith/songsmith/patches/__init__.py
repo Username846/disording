@@ -92,4 +92,4 @@ def render_note(
 
 
 # Engine modules register their patches on import.
-from . import additive, bowed, drums, fm, modal, noise, pluck, reed, subtractive  # noqa: E402,F401
+from . import additive, bowed, brass, drums, fm, fx, modal, noise, pluck, reed, subtractive  # noqa: E402,F401

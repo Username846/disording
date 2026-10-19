@@ -23,7 +23,7 @@ from .spec import Section, Sfx, Song
 from .theory import ChordSpan, note_to_midi, parse_chord_line
 from .voice import personas
 from .voice.g2p import align_word
-from .voice.harmony import harmonize
+from .voice.harmony import close_harmony, harmonize
 from .voice.singer import SungNote, SungSyllable
 from .voice.singer import render as sing
 
@@ -208,12 +208,17 @@ def _render_voice(song: Song, instances: list[Instance], timeline: Timeline, mel
     shift = personas.range_shift(persona, lead)
     flat_chords = [c for _, _, chords in syl_notes for c in chords]
     lines: dict[str, list[int | None]] = {"melody": [m + shift for m in lead]}
-    if any(p["line"] != "melody" for p in persona["parts"]):
+    wanted = {p["line"] for p in persona["parts"]}
+    if wanted & {"alto", "tenor", "bass"}:
         lines.update(harmonize(lines["melody"], flat_chords))
+    close = [w for w in wanted if w.startswith("close")]
+    if close:
+        lines.update(close_harmony(lines["melody"], flat_chords, max(int(w[5:]) for w in close)))
     total_seconds = n / SR
     voice = np.zeros((2, n))
     for pi, part in enumerate(persona["parts"]):
         line = lines[part["line"]]
+        octave = 12 * int(part.get("octave", 0))
         sylls: list[SungSyllable] = []
         k = 0
         for ph, notes, _ in syl_notes:
@@ -222,11 +227,14 @@ def _render_voice(song: Song, instances: list[Instance], timeline: Timeline, mel
                 midi = line[k]
                 k += 1
                 if midi is not None:
-                    sung.append(SungNote(t0, t1, float(midi), vel))
+                    sung.append(SungNote(t0, t1, float(midi + octave), vel))
             if sung:
                 sylls.append(SungSyllable(ph, sung))
         params = personas.params_for(persona, part)
         mono = sing(sylls, params, total_seconds, seed=_seed(song.seed, "voice", pi), n_samples=n)
+        ring_hz = part.get("ring_mod_hz", persona.get("ring_mod_hz"))
+        if ring_hz:
+            mono = dsp.ring_mod(mono, float(ring_hz), float(part.get("ring_mod_mix", persona.get("ring_mod_mix", 0.5))))
         mono = _stem_level(mono, VOICE_RMS_DB + part.get("gain_db", 0.0))
         personas.ensemble(mono, int(persona.get("unison", 1)), float(persona.get("detune_cents", 0.0)), float(part.get("pan", 0.0)), _seed(song.seed, "ens", pi), out=voice)
     voice = _stem_level(voice, VOICE_RMS_DB + float(song.voice.get("gain_db", 0.0)))

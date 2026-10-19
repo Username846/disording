@@ -42,6 +42,16 @@ func _qa_force(outcome: StringName) -> void:
 			ctx.award_star()
 
 
+## Dev/QA: jump straight to phase `index` (e.g. a bout or level). Return true if supported.
+func _qa_jump(_index: int) -> bool:
+	return false
+
+
+## Tests: let an AI play the day (scripted win bot). Return true if supported.
+func _qa_autoplay(_enabled: bool) -> bool:
+	return false
+
+
 func succeed(stats: Dictionary = {}) -> void:
 	if _ended:
 		return
