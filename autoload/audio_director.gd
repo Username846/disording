@@ -1,6 +1,9 @@
 extends Node
 ## Music, stingers, SFX and the beat clock (PLAN.md §6.1). Autoload name: Audio.
 ## Music uses Stream playback (memory-friendly); SFX use Sample playback (low latency on web).
+## The Music and SFX buses come from res://default_bus_layout.tres. Don't create buses at runtime:
+## on web, AudioServer.add_bus() scrambles the order of the browser-side sample buses, which
+## silences every Sample-playback sound.
 
 signal beat(index: int)
 signal bar(index: int)
@@ -28,8 +31,9 @@ var _music_tween: Tween
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	_ensure_bus(MUSIC_BUS)
-	_ensure_bus(SFX_BUS)
+	for bus_name in [MUSIC_BUS, SFX_BUS]:
+		if AudioServer.get_bus_index(bus_name) == -1:
+			push_error("Audio bus '%s' missing from default_bus_layout.tres" % bus_name)
 	for i in 2:
 		var p := AudioStreamPlayer.new()
 		p.bus = MUSIC_BUS
@@ -197,15 +201,6 @@ func _apply_volumes() -> void:
 
 func _volume_db(key: String) -> float:
 	return linear_to_db(maxf(0.0001, Settings.get_float(key)))
-
-
-func _ensure_bus(bus_name: StringName) -> void:
-	if AudioServer.get_bus_index(bus_name) != -1:
-		return
-	AudioServer.add_bus()
-	var index := AudioServer.bus_count - 1
-	AudioServer.set_bus_name(index, bus_name)
-	AudioServer.set_bus_send(index, &"Master")
 
 
 static func _bisect(values: Array, t: float) -> int:

@@ -351,6 +351,14 @@ func state(n: int) -> DoorState:
 - **Beat clock:** `beats.json` (beat and bar times, section markers) drives rhythm games and lets any day pulse its
   visuals to the music.
 - **Web audio unlock:** the Title screen's "Tap to open" is the first user gesture, so the AudioContext resumes there.
+  On iOS the shell sets `navigator.audioSession.type = 'playback'` (older iOS: a looping silent `<audio>` started on
+  the first tap), so sound plays even with the ring/silent switch on silent.
+- **Buses:** Master, Music and SFX are defined in `res://default_bus_layout.tres`. Never call `AudioServer.add_bus()`
+  at runtime: on web it puts the browser-side sample buses in the wrong order and every Sample-playback sound goes
+  silent. A unit test checks the layout and the browser smoke test measures real output for music and an SFX.
+- **Web buffer:** single-threaded web builds mix Stream audio on the main thread between frames, so
+  `audio/driver/output_latency.web = 150` (≈ 186 ms buffer) keeps music continuous down to ~10 fps. The beat clock
+  subtracts `AudioServer.get_output_latency()`, which includes this buffer.
 - **Step 1 must benchmark** Stream vs Sample playback for music on the low-reference phone and record the result in
   `docs/STATUS.md`. If Stream stutters under main-thread load, fall back to Sample with mono 32 kHz music.
 

@@ -32,6 +32,34 @@ function serve(root) {
 const failures = [];
 function check(cond, msg) { if (!cond) { failures.push(msg); console.error('✗', msg); } else { console.log('✓', msg); } }
 
+// Taps everything Godot connects to the speakers so the test can measure real output levels.
+// window.__peak() returns the loudest RMS seen since the previous call.
+function hookAudio() {
+  const peaks = [];
+  const Orig = window.AudioContext;
+  window.AudioContext = function (...a) {
+    const ctx = new Orig(...a);
+    const analyser = ctx.createAnalyser();
+    analyser.fftSize = 1024;
+    ctx.__analyser = analyser;
+    const data = new Float32Array(analyser.fftSize);
+    setInterval(() => {
+      analyser.getFloatTimeDomainData(data);
+      let sum = 0;
+      for (const v of data) sum += v * v;
+      peaks.push(Math.sqrt(sum / data.length));
+    }, 10);
+    return ctx;
+  };
+  window.AudioContext.prototype = Orig.prototype;
+  const connect = AudioNode.prototype.connect;
+  AudioNode.prototype.connect = function (dest, ...rest) {
+    if (dest instanceof AudioDestinationNode && this.context.__analyser) connect.call(this, this.context.__analyser);
+    return connect.call(this, dest, ...rest);
+  };
+  window.__peak = () => Math.max(0, ...peaks.splice(0));
+}
+
 function watch(page, label) {
   const log = [];
   page.on('console', (m) => {
@@ -121,9 +149,25 @@ try {
   {
     const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
     const log = watch(page, 'preview');
+    await page.addInitScript(hookAudio);
     await page.goto(`${base}/preview/index.html`);
     check(await waitLog(log, '[disording] title ready', 90000), 'preview: title screen boots');
     check(await openCalendar(page, log, false), 'preview: tap opens the calendar');
+    // Sound: music (Stream playback) and an SFX (Sample playback) must both reach the speakers.
+    // At CI's software-rendered frame rates the music fade-in runs slow, so give it a while.
+    let music = 0;
+    for (let i = 0; i < 8 && music <= 0.002; i++) {
+      await page.waitForTimeout(1000);
+      music = Math.max(music, await page.evaluate(() => window.__peak()));
+    }
+    check(music > 0.002, `preview: music reaches the speakers (rms ${music.toFixed(3)})`);
+    await page.evaluate(() => window.__disording.cmd('stop_music'));
+    await page.waitForTimeout(1000);
+    await page.evaluate(() => window.__peak());
+    await page.evaluate(() => window.__disording.cmd('play_sfx', 'open'));
+    await page.waitForTimeout(1500);
+    const sfx = await page.evaluate(() => window.__peak());
+    check(sfx > 0.01, `preview: sound effects reach the speakers (rms ${sfx.toFixed(3)})`);
     await page.evaluate(() => window.__disording.cmd('start_day', 0));
     let s = await waitState(page, (st) => st.screen === 'day' && st.state === 'running');
     check(s.state === 'running', `preview: Day 0 runs (state ${JSON.stringify(s)})`);

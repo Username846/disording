@@ -25,7 +25,10 @@ Legend: ✅ done · 🟡 in progress · ⬜ todo
 - Measure fps and boot time on real phones (low reference: 2020 Moto G / Snapdragon 665; mid: iPhone 11 or a 2021
   Android). CI's Chromium uses software WebGL (SwiftShader), so its fps numbers (~9 fps desktop, ~6 fps at 4×
   throttle) are recorded but not gated.
-- Benchmark music **Stream vs Sample** playback on the low-reference phone (PLAN.md §6.1). It's Stream for now.
+- Benchmark music **Stream vs Sample** playback on the low-reference phone (PLAN.md §6.1). It's Stream for now, with
+  a 150 ms web output buffer: in headless Chromium the music stays continuous at 10 and 29 fps (with the old 50 ms
+  default it dropped out about half the time at 30 fps).
+- Confirm sound on a real iPhone with the silent switch on (the shell asks for the "playback" audio session).
 - Check whether GitHub Pages serves `index.wasm`/`index.pck` gzip-compressed (`curl -sI -H "Accept-Encoding: gzip"`).
 - Pick a licence for the repository's code (none is set yet).
 

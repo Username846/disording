@@ -281,6 +281,31 @@ const engine = new Engine(GODOT_CONFIG);
 		document.body.classList.add('rotate-dismissed');
 	});
 
+	// --- iOS: play sound even when the ring/silent switch is on silent. ---
+	// Safari files Web Audio under "ambient" by default, and the switch mutes that.
+	if (navigator.audioSession) {
+		try { navigator.audioSession.type = 'playback'; } catch (e) { /* read-only in some versions */ }
+	} else if (isIOS) {
+		// Older iOS has no audioSession: a looping silent <audio> element started from a tap
+		// moves the page into the playback category for as long as it runs.
+		const n = 800;
+		const wav = new DataView(new ArrayBuffer(44 + n));
+		const tag = (at, s) => { for (let i = 0; i < s.length; i++) wav.setUint8(at + i, s.charCodeAt(i)); };
+		tag(0, 'RIFF'); wav.setUint32(4, 36 + n, true); tag(8, 'WAVEfmt ');
+		wav.setUint32(16, 16, true); wav.setUint16(20, 1, true); wav.setUint16(22, 1, true);
+		wav.setUint32(24, 8000, true); wav.setUint32(28, 8000, true); wav.setUint16(32, 1, true); wav.setUint16(34, 8, true);
+		tag(36, 'data'); wav.setUint32(40, n, true);
+		new Uint8Array(wav.buffer, 44).fill(128);
+		const keepAlive = new Audio(URL.createObjectURL(new Blob([wav.buffer], { type: 'audio/wav' })));
+		keepAlive.loop = true;
+		keepAlive.setAttribute('playsinline', '');
+		const start = () => { keepAlive.play().catch(() => {}); };
+		['touchend', 'click', 'keydown'].forEach((type) => document.addEventListener(type, start, { capture: true }));
+		document.addEventListener('visibilitychange', () => {
+			if (document.hidden) { keepAlive.pause(); } else { start(); }
+		});
+	}
+
 	// --- Loader ---
 	const statusOverlay = document.getElementById('status');
 	const statusProgress = document.getElementById('status-progress');
