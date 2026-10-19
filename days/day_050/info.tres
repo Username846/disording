@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 50
+title = "Pause & Plan"
+genre = "real-time-with-pause tactics"
+pitch = "A four-hero party fights through a dungeon. Pause at any moment to queue orders, aim area spells and position your party, then unpause and watch it play out."
+hints = PackedStringArray()
+est_minutes = 12
+scene_path = "res://days/day_050/game.tscn"
+bundle_id = "day_050"
+palette = PackedColorArray(0.8500, 0.3825, 0.6582, 1, 0.7350, 0.9800, 0.8355, 1, 0.3000, 0.1200, 0.2262, 1)

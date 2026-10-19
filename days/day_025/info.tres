@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 25
+title = "Council of Five"
+genre = "swipe-decision kingdom (Reigns-like)"
+pitch = "Rule from the Stone Age to the Space Age by swiping on your advisors' proposals, keeping Food, Faith, Gold and Science in balance."
+hints = PackedStringArray()
+est_minutes = 10
+scene_path = "res://days/day_025/game.tscn"
+bundle_id = "day_025"
+palette = PackedColorArray(0.3825, 0.8500, 0.7121, 1, 0.9800, 0.7350, 0.8073, 1, 0.1200, 0.3000, 0.2469, 1)

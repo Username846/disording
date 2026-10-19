@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 42
+title = "Cliffhanger"
+genre = "two-hand ice-climbing timing"
+pitch = "Climb an ice wall by alternating ice-axe swings. Bad timing cracks the ice, and storms shake you loose."
+hints = PackedStringArray()
+est_minutes = 10
+scene_path = "res://days/day_042/game.tscn"
+bundle_id = "day_042"
+palette = PackedColorArray(0.8500, 0.3825, 0.5019, 1, 0.7350, 0.9800, 0.9174, 1, 0.3000, 0.1200, 0.1660, 1)

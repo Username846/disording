@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 81
+title = "Rewind Rock"
+genre = "object time-reversal puzzle"
+pitch = "Select an object and send it backwards along its own history: falling rocks rise again as platforms, and thrown logs fly back as bridges."
+hints = PackedStringArray()
+est_minutes = 11
+scene_path = "res://days/day_081/game.tscn"
+bundle_id = "day_081"
+palette = PackedColorArray(0.8500, 0.5529, 0.3825, 1, 0.7350, 0.8907, 0.9800, 1, 0.3000, 0.1856, 0.1200, 1)

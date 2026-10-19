@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 46
+title = "Hex Hearth"
+genre = "hex tile-laying"
+pitch = "Grow a civilization one hex tile at a time. Fields, forests, rivers and villages score when they match their neighbours, and quests ask for specific shapes."
+hints = PackedStringArray()
+est_minutes = 11
+scene_path = "res://days/day_046/game.tscn"
+bundle_id = "day_046"
+palette = PackedColorArray(0.3825, 0.8500, 0.6524, 1, 0.9800, 0.7350, 0.8385, 1, 0.1200, 0.3000, 0.2239, 1)

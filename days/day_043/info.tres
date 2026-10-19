@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 43
+title = "Tether"
+genre = "tethered-drone piloting"
+pitch = "Pilot a little robot on a cable through vents and rooms for an old soldier. The cable snags on corners, has a fixed length, and the battery drains."
+hints = PackedStringArray()
+est_minutes = 11
+scene_path = "res://days/day_043/game.tscn"
+bundle_id = "day_043"
+palette = PackedColorArray(0.3825, 0.6383, 0.8500, 1, 0.9800, 0.8459, 0.7350, 1, 0.1200, 0.2185, 0.3000, 1)

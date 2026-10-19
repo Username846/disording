@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 68
+title = "Grabber"
+genre = "gravity-glove physics flinging"
+pitch = "Grab any object in the scene and fling it: saw blades at locks, barrels onto switches, crates up as stairs. Work your way through a dystopian city to a rocket."
+hints = PackedStringArray()
+est_minutes = 11
+scene_path = "res://days/day_068/game.tscn"
+bundle_id = "day_068"
+palette = PackedColorArray(0.8500, 0.4563, 0.3825, 1, 0.7350, 0.9413, 0.9800, 1, 0.3000, 0.1484, 0.1200, 1)

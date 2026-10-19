@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 39
+title = "Pileup Junction"
+genre = "crash-junction physics puzzle"
+pitch = "Launch your car into busy junctions to cause the most spectacular (and cartoonish) pile-up. Steer the tumbling wreck with aftertouch and set off the crash-breaker."
+hints = PackedStringArray()
+est_minutes = 10
+scene_path = "res://days/day_039/game.tscn"
+bundle_id = "day_039"
+palette = PackedColorArray(0.8500, 0.6723, 0.3825, 1, 0.7350, 0.8281, 0.9800, 1, 0.3000, 0.2316, 0.1200, 1)

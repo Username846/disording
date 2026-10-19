@@ -1,0 +1,7 @@
+# gdtoolkit (gdlint) settings. Defaults, except a slightly longer line limit.
+max-line-length: 120
+max-file-lines: 1000
+max-public-methods: 40
+max-returns: 8
+function-arguments-number: 8
+disable: []

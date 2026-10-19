@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 14
+title = "Shadowtree Duels"
+genre = "parry-timing duel (boss rush)"
+pitch = "Seven duels decided by timing. Read the telegraphed attacks, parry on the correct side, and riposte when your opponent's posture breaks."
+hints = PackedStringArray()
+est_minutes = 10
+scene_path = "res://days/day_014/game.tscn"
+bundle_id = "day_014"
+palette = PackedColorArray(0.3825, 0.4223, 0.8500, 1, 0.9800, 0.9591, 0.7350, 1, 0.1200, 0.1353, 0.3000, 1)

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 1
+title = "Toybox Ring-Out"
+genre = "flick-physics sumo (ring-out brawler)"
+pitch = "Wind-up toys brawl on household battlefields. You don't press attack buttons; you flick your tin knight like a marble. Each hit adds damage %, and the more damage a toy has, the farther it flies. Ring everyone out."
+hints = PackedStringArray()
+est_minutes = 11
+scene_path = "res://days/day_001/game.tscn"
+bundle_id = "day_001"
+palette = PackedColorArray(0.3825, 0.5189, 0.8500, 1, 0.9800, 0.9085, 0.7350, 1, 0.1200, 0.1725, 0.3000, 1)

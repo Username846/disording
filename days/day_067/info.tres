@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 67
+title = "Goo Lab"
+genre = "gel-painting physics puzzle"
+pitch = "Paint surfaces with bounce gel, speed gel and sticky gel so a test ball rolls into the exit."
+hints = PackedStringArray()
+est_minutes = 11
+scene_path = "res://days/day_067/game.tscn"
+bundle_id = "day_067"
+palette = PackedColorArray(0.3825, 0.8500, 0.5927, 1, 0.9800, 0.7350, 0.8698, 1, 0.1200, 0.3000, 0.2009, 1)

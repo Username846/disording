@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 31
+title = "Nine Seals"
+genre = "gesture-glyph combat"
+pitch = "Draw hand-sign glyphs to cast ninja arts at approaching fiends. Faster, cleaner strokes hit harder."
+hints = PackedStringArray()
+est_minutes = 10
+scene_path = "res://days/day_031/game.tscn"
+bundle_id = "day_031"
+palette = PackedColorArray(0.8500, 0.8286, 0.3825, 1, 0.7350, 0.7462, 0.9800, 1, 0.3000, 0.2918, 0.1200, 1)

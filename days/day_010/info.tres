@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 10
+title = "Campfire Cookpot"
+genre = "recipe-discovery cooking"
+pitch = "You're a wandering forager-chef. Put up to five ingredients in the pot. Their effects combine by hidden rules that you learn through experiments logged in your journal."
+hints = PackedStringArray()
+est_minutes = 10
+scene_path = "res://days/day_010/game.tscn"
+bundle_id = "day_010"
+palette = PackedColorArray(0.8116, 0.8500, 0.3825, 1, 0.7551, 0.7350, 0.9800, 1, 0.2852, 0.3000, 0.1200, 1)

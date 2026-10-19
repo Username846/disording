@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 58
+title = "Three Day Moon"
+genre = "time-loop schedule puzzle"
+pitch = "A town has three days before the moon falls, and each loop lasts about 3 minutes. Learn everyone's schedules, then step in at exactly the right moments. Your notebook carries over between loops."
+hints = PackedStringArray()
+est_minutes = 13
+scene_path = "res://days/day_058/game.tscn"
+bundle_id = "day_058"
+palette = PackedColorArray(0.8500, 0.3825, 0.8146, 1, 0.7350, 0.9800, 0.7536, 1, 0.3000, 0.1200, 0.2864, 1)

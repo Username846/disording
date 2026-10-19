@@ -1,0 +1,182 @@
+# Calendar menu theme. Rendered by tools/songsmith → generated/menu.<hash>.bundle.zip
+title: "One More Door"
+bpm: 92
+key: F major
+beats_per_bar: 4
+swing: 0.0
+seed: 2026
+target_minutes: 4.17
+form: [intro, verse1, chorus, verse2, chorus, bridge, interlude_a, interlude_b, bells_break, verse3, chorus, chorus_tag, turnaround]
+loop: { from: verse1 }
+
+voice:
+  persona: warm_choir
+  gain_db: 2.0
+
+reverb: { rt60: 2.4, predelay: 0.03, damping_hz: 6000, wet_db: -5 }
+
+instruments:
+  handbells: { patch: modal.handbells, signature: true, pan: -0.25, gain_db: 0, reverb: 0.45 }
+  glock:     { patch: modal.glockenspiel, pan: 0.3, gain_db: -5, reverb: 0.4 }
+  sleigh:    { patch: perc.sleigh_bells, pan: 0.2, gain_db: -11, reverb: 0.25 }
+  bass:      { patch: pluck.upright_bass, pan: 0.0, gain_db: -2, reverb: 0.12 }
+  pad:       { patch: va.string_pad, pan: 0.0, gain_db: -8, reverb: 0.5 }
+
+sections:
+  intro:
+    bars: 4
+    chords: "F | Bb | F | C7"
+    parts:
+      handbells: { pattern: rounds, rate: 0.5, vel: 0.6 }
+      pad: { pattern: pad_sustain, vel: 0.45 }
+      bass: { pattern: root, vel: 0.6, bars: [3, 4] }
+      sleigh: { grid: "....x.......x..." , vel: 0.5 }
+
+  verse1:
+    bars: 8
+    chords: "F | Bb | F | C | F | Bb | Gm7 C7 | F"
+    parts:
+      handbells: { pattern: chord_bells, rate: 0.5, vel: 0.42 }
+      pad: { pattern: pad_sustain, vel: 0.45 }
+      bass: { pattern: root_fifth_2feel, vel: 0.75 }
+      sleigh: { grid: "....x.......x...", vel: 0.45 }
+    melody: |
+      Snow:A4:1 is:A4:0.5 fal-:Bb4:0.5 ling:C5:1 soft:D5:1 and:C5:1 slow,:Bb4:2 _:1
+      Ev-:A4:0.5 ery:A4:0.5 win-:G4:1 dow:F4:1 all:G4:1 a-:A4:1 glow.:G4:2 _:1
+      Lit-:A4:1 tle:A4:0.5 doors:Bb4:0.5 are:C5:1 in:D5:1 a:F5:1 row,:D5:2 _:1
+      Who:C5:1 will:Bb4:1 knock?:G4:1 _:1 Who:A4:1 will:G4:1 go?:F4:2
+
+  verse2:
+    extends: verse1
+    melody: |
+      Rib-:A4:0.5 bons:A4:0.5 tied:Bb4:1 on:C5:1 ev-:D5:0.5 ery:D5:0.5 gate,:C5:1 -:Bb4:2 _:1
+      Hun-:A4:0.5 dred:A4:0.5 doors:G4:1 and:F4:1 one:G4:1 to:A4:1 wait.:G4:2 _:1
+      Turn:A4:1 the:A4:0.5 key:Bb4:0.5 and:C5:1 lift:D5:1 the:F5:1 latch,:D5:2 _:1
+      Some-:C5:1 thing:Bb4:0.5 new:A4:0.5 for:G4:1 you:A4:1 to:G4:1 catch.:F4:2 _:1
+
+  verse3:
+    extends: verse1
+    melody: |
+      When:A4:0.5 the:A4:0.5 hun-:Bb4:1 dredth:C5:1 door:D5:1 is:C5:1 through,:Bb4:2 _:1
+      Ev-:A4:0.5 ery:A4:0.5 bell:G4:1 will:F4:1 ring:G4:1 for:A4:1 you.:G4:2 _:1
+      Ev-:A4:0.5 ery:A4:0.5 song:Bb4:1 we:C5:1 sang:D5:1 be-:F5:1 fore:D5:2 _:1
+      waits:C5:1 be-:Bb4:0.5 hind:A4:1.5 an-:G4:0.5 oth-:A4:0.5 er:G4:1 door.:F4:3
+
+  chorus:
+    bars: 8
+    chords: "F | Dm | Bb | C | F | Dm | Bb C | F"
+    parts:
+      handbells: { pattern: arp_up, rate: 0.5, vel: 0.4, center_pc: 5 }
+      glock: { melody_double: true, octave_shift: 1, vel: 0.32, legato: 0.6 }
+      pad: { pattern: pad_sustain, vel: 0.55 }
+      bass: { pattern: walking, vel: 0.8 }
+      sleigh: { grid: "o.X.o.X.o.X.o.Xo", vel: 0.55 }
+    melody: |
+      One:C5:1 more:D5:1 door,:C5:2 one:A4:1 more:Bb4:1 day,:C5:2
+      O-:D5:1 pen:D5:0.5 up:C5:0.5 and:Bb4:1 come:A4:1 and:G4:1 play!:C5:3
+      Ring:C5:1 the:C5:0.5 bells:D5:0.5 and:C5:1 light:F5:1 the:E5:1 way,:D5:2 _:1
+      One:D5:1 more:D5:1 door,:C5:1 one:C5:1 more:A4:1 day.:F4:3
+
+  chorus_tag:
+    extends: chorus
+    melody: |
+      One:C5:1 more:D5:1 door,:C5:2 one:A4:1 more:Bb4:1 day,:C5:2
+      O-:D5:1 pen:D5:0.5 up,:C5:0.5 it's:Bb4:1 time:A4:1 to:G4:1 play!:C5:3
+      Ring:C5:1 the:C5:0.5 bells:D5:0.5 and:C5:1 lead:F5:1 the:E5:1 way,:D5:2 _:1
+      One:D5:1 more:D5:1 door,:C5:1 one:C5:1 more:A4:1 day.:F4:3
+
+  bridge:
+    bars: 8
+    chords: "Dm | Bb | F | C | Dm | Bb | Gm7 | C7"
+    parts:
+      handbells: { pattern: block, vel: 0.32 }
+      pad: { pattern: pad_sustain, vel: 0.6 }
+      bass: { pattern: root, vel: 0.65 }
+    melody: |
+      To-:A4:1 mor-:D5:1 row's:C5:1 door:A4:1 is:Bb4:1 sleep-:D5:1.5 ing,:Bb4:0.5 _:1
+      dream-:C5:1 ing:A4:1 of:C5:1 the:D5:1 light.:C5:3 _:1
+      Close:A4:1 your:A4:1 eyes,:D5:1 the:C5:0.5 bells:C5:0.5 are:Bb4:1 keep-:D5:1 ing:Bb4:1 _:1
+      ev-:G4:0.5 ery:A4:0.5 star:Bb4:2 to-:A4:1 night.:G4:3 _:1
+
+  interlude_a:
+    bars: 8
+    chords: "F | Bb | F | C | F | Bb | Gm7 C7 | F"
+    parts:
+      glock: { melody_of: verse1, octave_shift: 1, vel: 0.62 }
+      handbells: { pattern: chord_bells, rate: 0.5, vel: 0.38 }
+      pad: { pattern: pad_sustain, vel: 0.5 }
+      bass: { pattern: root_fifth_2feel, vel: 0.75 }
+      sleigh: { grid: "o.x.o.x.o.x.o.x.", vel: 0.5 }
+
+  interlude_b:
+    bars: 8
+    chords: "F | Dm | Bb | C | F | Dm | Bb C | F"
+    parts:
+      handbells: { melody_of: chorus, octave_shift: 0, vel: 0.72 }
+      glock: { pattern: arp_up, rate: 0.5, vel: 0.22 }
+      pad: { pattern: pad_sustain, vel: 0.55 }
+      bass: { pattern: walking, vel: 0.8 }
+      sleigh: { grid: "o.X.o.X.o.X.o.Xo", vel: 0.55 }
+
+  bells_break:
+    bars: 8
+    chords: "F | Bb | F | C | Dm | Bb | Gm7 | C7"
+    parts:
+      handbells: { pattern: rounds, rate: 0.5, vel: 0.62 }
+      glock: { pattern: chord_bells, rate: 1.0, vel: 0.25 }
+      pad: { pattern: pad_sustain, vel: 0.5 }
+      bass: { pattern: root_fifth_2feel, vel: 0.7 }
+      sleigh: { grid: "x.x.x.x.x.x.x.x.", vel: 0.45 }
+
+  turnaround:
+    bars: 4
+    chords: "Bb | C | Bb | C7"
+    parts:
+      handbells: { pattern: rounds, rate: 0.5, vel: 0.55 }
+      pad: { pattern: pad_sustain, vel: 0.5 }
+      bass: { pattern: root, vel: 0.7 }
+      sleigh: { grid: "....x.......x...", vel: 0.5 }
+
+# UI sounds — all from the handbell / bell / wood family.
+sfx:
+  tap:       { events: [{ patch: modal.handbells, note: C6, dur: 0.1, vel: 0.5, damp: 0.12, tail: 0.3 }], length: 0.35, reverb: 0.1 }
+  back:      { events: [{ patch: modal.handbells, note: G5, dur: 0.1, vel: 0.45, damp: 0.14, tail: 0.3 }], length: 0.35, reverb: 0.1, gain_db: -1 }
+  toggle:
+    events:
+      - { patch: modal.handbells, note: C6, dur: 0.06, vel: 0.45, damp: 0.1, tail: 0.25 }
+      - { patch: modal.handbells, note: G6, t: 0.07, dur: 0.08, vel: 0.45, damp: 0.12, tail: 0.25 }
+    length: 0.4
+  knock:
+    events:
+      - { patch: perc.door_knock, t: 0.0, vel: 0.95 }
+      - { patch: perc.door_knock, t: 0.17, vel: 0.8 }
+    reverb: 0.25
+  creak:     { events: [{ patch: noise.creak, dur: 0.75, vel: 0.8 }], reverb: 0.2, gain_db: -2 }
+  rattle:
+    events:
+      - { patch: noise.rattle, dur: 0.35, vel: 0.85 }
+      - { patch: perc.door_knock, t: 0.02, vel: 0.35, decay: 0.05 }
+    reverb: 0.1
+  open:
+    events:
+      - { patch: noise.creak, dur: 0.45, vel: 0.6, rate_start: 30, rate_end: 70 }
+      - { patch: noise.whoosh, t: 0.12, dur: 0.5, vel: 0.35, f_start: 300, f_end: 2500 }
+      - { patch: modal.handbells, note: F6, t: 0.32, dur: 0.4, vel: 0.4, tail: 0.8 }
+    length: 1.3
+    reverb: 0.25
+  unlock:
+    events:
+      - { patch: modal.handbells, note: F5, t: 0.0, dur: 0.6, vel: 0.65, tail: 1.0 }
+      - { patch: modal.handbells, note: A5, t: 0.11, dur: 0.6, vel: 0.65, tail: 1.0 }
+      - { patch: modal.handbells, note: C6, t: 0.22, dur: 0.8, vel: 0.75, tail: 1.0 }
+    length: 1.6
+    reverb: 0.3
+  star:
+    events:
+      - { patch: modal.chime, note: C7, t: 0.0, dur: 0.2, vel: 0.7, tail: 0.5 }
+      - { patch: modal.chime, note: E7, t: 0.08, dur: 0.2, vel: 0.7, tail: 0.5 }
+      - { patch: modal.chime, note: G7, t: 0.16, dur: 0.3, vel: 0.8, tail: 0.5 }
+      - { patch: modal.handbells, note: C6, t: 0.0, dur: 0.4, vel: 0.3, tail: 0.4 }
+    length: 0.75
+    reverb: 0.3
+  countdown: { events: [{ patch: perc.woodblock, vel: 0.5 }], length: 0.25, reverb: 0.05, gain_db: -4 }

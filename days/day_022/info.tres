@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 22
+title = "Chalkboard Coach"
+genre = "playbook drawing (coach sim)"
+pitch = "Draw plays on a chalkboard: routes for receivers, blocks for linemen. The AI then runs your play against the defences you scouted."
+hints = PackedStringArray()
+est_minutes = 12
+scene_path = "res://days/day_022/game.tscn"
+bundle_id = "day_022"
+palette = PackedColorArray(0.3825, 0.5786, 0.8500, 1, 0.9800, 0.8772, 0.7350, 1, 0.1200, 0.1955, 0.3000, 1)

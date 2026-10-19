@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 32
+title = "Just a Box"
+genre = "hide-in-plain-sight (prop stealth)"
+pitch = "You're a cardboard box in a busy warehouse. Move only when nobody is watching, blend in with the other boxes and ride the conveyors to freedom."
+hints = PackedStringArray()
+est_minutes = 11
+scene_path = "res://days/day_032/game.tscn"
+bundle_id = "day_032"
+palette = PackedColorArray(0.6922, 0.3825, 0.8500, 1, 0.8177, 0.9800, 0.7350, 1, 0.2393, 0.1200, 0.3000, 1)

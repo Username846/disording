@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 36
+title = "Tumbler"
+genre = "tactile lockpicking"
+pitch = "Pick pin-tumbler locks by feel: the pick wobbles, the pin clicks, and the phone vibrates where supported. A guard's patrol timer keeps the pressure on."
+hints = PackedStringArray()
+est_minutes = 10
+scene_path = "res://days/day_036/game.tscn"
+bundle_id = "day_036"
+palette = PackedColorArray(0.6184, 0.8500, 0.3825, 1, 0.8564, 0.7350, 0.9800, 1, 0.2108, 0.3000, 0.1200, 1)

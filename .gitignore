@@ -1,0 +1,18 @@
+# Godot
+.godot/
+*.translation
+# Build output
+build/
+# Songsmith output (rendered in CI)
+generated/*
+!generated/.gdignore
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv*/
+# Node / Playwright
+node_modules/
+tests/web/test-results/
+tests/web/playwright-report/
+build_info.json

@@ -103,14 +103,17 @@ days/
   day_001/ … day_100/       # info.tres, game.tscn, game.gd, parts/, song.yaml, thumbnail.webp, README.md
 music/menu/song.yaml        # calendar theme spec
 generated/                  # .gdignore'd. Songsmith output: per-day bundles (gitignored)
-tools/
+tools/                      # .gdignore'd (Godot never scans it)
   songsmith/                # Python package: offline music, voice and SFX renderer (section 6)
-  ci/                       # build_web.sh, assemble_site.py, check_budgets.py, gen_day_stubs.py
-  capture_thumbnail.gd      # renders a day's thumbnail headlessly
+  ci/                       # fetch_godot.py, godot_tests.sh, build_web.sh, assemble_site.py,
+                            #   check_budgets.py, gen_day_stubs.py
+dev/                        # Godot-side dev scripts: make_icons.gd, capture_thumbnail.gd (Step 2)
 tests/
-  unit/                     # calendar, save, gestures, registry, audio-bundle parsing
-  smoke/                    # instantiate every implemented day, fuzz input, QA hooks
-  web/                      # Playwright: boot, calendar, day 0/1 flows, perf probe
+  test_runner.tscn          # unit tests + platform smoke (run with --fixed-fps 60 -- --test)
+  script_check.tscn         # compiles every script with autoloads active
+  unit/                     # calendar, save, gestures, registry
+  smoke/                    # every implemented day: fuzz input, forced outcomes, unlock rules
+  web/                      # Playwright smoke.mjs: release, preview Day 0, phone + throttle
 web/
   shell.html                # custom HTML shell: loader UI, gesture locks, safe areas, rotate hint
   icons/ manifest overrides
@@ -293,12 +296,13 @@ func state(n: int) -> DoorState:
 - **Dev overrides** exist only in preview and debug builds: unlock all, set the fake date, jump to a day, force
   success/fail/star, and reset.
 
-### 4.3 Never stuck
+### 4.3 Difficulty and retries
 
-The daily gate means a player who can't beat a door can never see the rest, so every day must ship with:
-- an **assist offer after 3 fails** in the current session ("Gentler" toggle: e.g. +1 life, wider timing windows,
-  slower timers). Completion still counts and is recorded as `assisted: true`. The fail state still exists.
-- optional **retry from checkpoint** for runs longer than about 8 min (phase-level, session-only).
+- **There is no easier mode.** Each day has one fixed difficulty, and the game never offers to lower it after
+  failures.
+- The daily gate means a player who can't beat a door can't see the rest, so each day is tuned (§8.2) so that a new
+  player can clear it within a few attempts. Runs longer than about 8 min may offer **retry from checkpoint**
+  (phase-level, session-only). It restarts a phase at the same difficulty.
 
 ---
 
@@ -453,9 +457,10 @@ verse sections, signature instrument not used by any other day (registry check),
 - `Web`: release, `variant/thread_support=false`, `html/custom_html_shell=res://web/shell.html`,
   `html/canvas_resize_policy=2` (adaptive), `progressive_web_app/enabled=true`, `orientation=landscape`, icons set,
   `ensure_cross_origin_isolation_headers=false` (not needed without threads), and `exclude_filter` for
-  `days/day_000/*, tests/*, tools/*`.
+  `days/day_000/*, tests/*, dev/*` (`tools/` is `.gdignore`d).
 - `Web Preview`: a debug export of the same project with the `preview` feature tag enabled. It includes Day 0, turns on
-  the dev panel and uses the separate save file.
+  the dev panel and uses the separate save file. Its PWA is off, so its service worker can't clash with the release
+  build's.
 
 ### 7.2 HTML shell (`web/shell.html`)
 
@@ -466,19 +471,23 @@ verse sections, signature instrument not used by any other day (registry check),
 - Suppress `contextmenu`, `gesturestart` and double-tap zoom. Expose `env(safe-area-inset-*)` to Godot.
 - A portrait overlay ("Rotate for the best fit"), dismissable, after which the game continues letterboxed.
 - A fullscreen button where the Fullscreen API exists (not on iPhone, where the hint suggests Add to Home Screen).
-- Resolution policy: render at CSS pixels × min(devicePixelRatio, 2) on desktop and × 1 on phones by default
-  ("Auto"). Settings can force Fast (×1) or Sharp (×DPR). Step 1 validates the exact mechanism in 4.7.2 (engine
-  config versus `allow_hidpi`).
+- Resolution policy (as built in Step 1): **Auto** renders phones in `viewport` stretch mode, which is the 2D canvas
+  at the 1280×720 reference resolution scaled up (cheap on 3× DPR screens). Desktops use `canvas_items` (native
+  resolution). Settings can force **Fast** (viewport) or **Sharp** (canvas_items). It switches at runtime through
+  `Window.content_scale_mode`.
 
 ### 7.3 CI (`.github/workflows/ci.yml`, on PR and push)
 
-1. `gdtoolkit` 4.x: `gdformat --check` and `gdlint` over `autoload core menu days tests`.
-2. Godot 4.7.2 headless (binary cached by version):
-   - `godot --headless --path . --import`
-   - `godot --headless --path . -s tests/run_unit.gd`, the unit tests (calendar, save, gestures, registry, bundles)
-   - `godot --headless --path . -s tests/run_smoke.gd`. For **every implemented day** it instantiates the scene with a
-     fake context, fuzzes 40 simulated seconds of random gestures, and asserts no errors, leaks or orphan nodes. It
-     then calls `_qa_force(&"success"|&"fail"|&"star")` and asserts that the Router, Results and Save react correctly.
+1. `gdtoolkit` 4.5: `gdformat --check --line-length 120` and `gdlint` over `autoload core menu days tests dev`, plus
+   a check that `days/*/info.tres` stubs match `docs/GAMES.md`.
+2. Godot 4.7.2 headless (binary cached by version), all through `tools/ci/godot_tests.sh`, which also fails on any
+   `SCRIPT ERROR`/`ERROR:` log line:
+   - `--import`
+   - `res://tests/script_check.tscn` compiles every script with the autoloads active.
+   - `--fixed-fps 60 res://tests/test_runner.tscn -- --test` runs the unit tests (calendar rules, dates, save
+     schema and save codes, gestures, registry), then the platform smoke test. The smoke test takes **every
+     implemented day** through the real DayHost: 40 simulated seconds of fuzzed gestures, then
+     `_qa_force(&"star"|&"fail"|&"success")`, checking the Save, Results, unlock rules and orphan nodes.
 3. Songsmith: `pytest tools/songsmith` (DSP unit tests plus a 10-second render of a fixture song through `songsmith
    check`).
 
@@ -496,8 +505,10 @@ verse sections, signature instrument not used by any other day (registry check),
    by root and preview) and writes `build.json` (commit, date, implemented days).
 5. **Budget gate:** `tools/ci/check_budgets.py` fails the deploy if the §2 sizes are exceeded.
 6. **Browser smoke:** a Playwright job (Chromium, desktop plus Pixel-class emulation with touch and 4× CPU throttle)
-   checks that the page boots, Title → Calendar works, the preview build opens Day 0 and every implemented day, there
-   are no console errors, and the average fps is ≥ 30 under throttle.
+   checks that the page boots, Title → Calendar works, the preview build plays Day 0 through the
+   `window.__disording` test API (star, success, back to the calendar), and there are no console errors. CI
+   runners use software WebGL (SwiftShader), so fps is **recorded, not gated**. The ≥ 30 fps budget is checked on
+   real phones and recorded in `docs/STATUS.md`.
 7. **Deploy:** `actions/upload-pages-artifact` → `actions/deploy-pages`.
 
 > **One-time manual step for the repo owner:** *Settings → Pages → Build and deployment → Source: **GitHub Actions***.
@@ -557,8 +568,7 @@ none of it (feature-tag gated and stripped).
 
 ### 8.5 Accessibility and comfort
 
-Captions for lyrics, reduce motion (no shake, no flashes > 3 Hz), the left-handed HUD, the assist offer after 3 fails,
-pause anywhere, no time-critical text reading, volume sliders, and haptics as an option.
+Captions for lyrics, reduce motion (no shake, no flashes > 3 Hz), the left-handed HUD, pause anywhere, no time-critical text reading, volume sliders, and haptics as an option.
 
 ### 8.6 Originality and legal
 
@@ -581,12 +591,12 @@ Each day step follows the same nine moves. Step 1 turns this into `docs/HOW_TO_A
 4. **Build the game** in `game.tscn`/`game.gd` plus `parts/`. Use `ctx` only. Follow the brief's phases, win/lose and
    controls. Extract a kit (§3.7) if a second day now needs the same code.
 5. **Wire the secret:** `ctx.award_star()` on the real trigger, the twinkle and chime, and `_qa_force(&"star")`.
-6. **Accessibility pass:** reduce motion, left-handed anchors, captions, and the assist toggle after 3 fails.
+6. **Accessibility pass:** reduce motion, left-handed anchors, captions. (No easier mode: §4.3.)
 7. **Tests:** the smoke fuzz passes, all three QA outcomes pass, and the scripted secret test passes. Add unit tests for
    any non-trivial rules (scoring, AI decisions, recognizers).
 8. **Perf and length pass:** preview build in Chrome at 4× CPU throttle with Pixel emulation, ≥ 30 fps and ≤ 150 draw
    calls in the worst phase. Bundle ≤ 3.5 MB. Main pack stays within its 12 MB budget. Telemetry shows a 5–15 min clear.
-9. **Ship:** run `tools/capture_thumbnail.gd` to make `thumbnail.webp`, update the `docs/STATUS.md` row, commit, push and
+9. **Ship:** run `dev/capture_thumbnail.gd` (built in Step 2) to make `thumbnail.webp`, update the `docs/STATUS.md` row, commit, push and
    check the deployed preview.
 
 ---
@@ -631,7 +641,7 @@ Each day step follows the same nine moves. Step 1 turns this into `docs/HOW_TO_A
 3. **Day contract:**
    - `DayGame`, `DayContext`, `DayInfo`, `DayResult`;
    - the shared HUD (pause button, lives/timer/score widgets, captions bar);
-   - pause menu, results screens, the assist-offer flow, the star twinkle and chime;
+   - pause menu, results screens, the star twinkle and chime;
    - **Day 0 "Test Room"** (debug only): a 90-second toy that exercises tap, drag, swipe, long-press, ±zoom,
      checkpoint, succeed, fail and a hidden star, used by the smoke tests and the browser smoke.
 4. **Menu:**
@@ -679,10 +689,10 @@ Build Day 1 exactly as in `docs/GAMES.md`, then turn it into the template every 
 - Produce `days/_template/` (scene skeleton with phases, the QA hooks, `song.yaml` skeleton, `info.tres`, README
   checklist).
 - Add the **Songsmith voice personas** needed by Days 1–10.
-- Tune the duration to a ~11 min median with three phases of AI difficulty, and add the assist variant (an extra spare
-  key and a slower AI flick cadence).
+- Tune the duration to a ~11 min median with three phases of AI difficulty.
 - Write a **scripted secret test** (the referee ring-out) and a **scripted win bot** for the smoke test. This sets the
   pattern for every later day.
+- Add `dev/capture_thumbnail.gd`, which renders a day headlessly into its ≤ 12 KB `thumbnail.webp` door art.
 
 ### Steps 3–101: one day each
 
@@ -805,6 +815,6 @@ Every step runs the per-day recipe (§9) against its brief in `docs/GAMES.md` an
 | Large first download | Single-threaded official templates first. If the budget gate trips, build a **slim custom web template** (`disable_3d=yes`, unused modules off) in a cached CI job. |
 | 100 games is a lot of scope | One brief per step, the `_template/`, the rule-of-two kits, local telemetry for tuning, and audit checkpoints every 25 days. |
 | Songs take too long to render in CI | Per-song content-hash cache. Only changed songs render. Each song has a ≤ 60 s budget. Vectorized DSP (`lfilter`) plus optional numba. |
-| Players stuck behind a daily gate | The assist offer after 3 fails (§4.3), checkpoints on long runs, and tuning to a ~70% first-try clear rate. |
+| Players stuck behind a daily gate | Tuning each day so new players clear it within a few attempts (~70% by the third try), and checkpoints on long runs (§4.3). No easier mode. |
 | Trademark or copyright | Original names and art only, source titles kept out of the build (§8.6), generic credits. |
 | Godot version drift | Pinned 4.7.2 everywhere. Upgrades only in a dedicated step with a full regression sweep. |

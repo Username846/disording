@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 12
+title = "Hot & Cold Hollows"
+genre = "hot-and-cold proximity treasure digging"
+pitch = "Ride a big digging bird through meadows. It senses buried treasure only as warmer or colder, so you have to dig in the right place before its stamina runs out."
+hints = PackedStringArray()
+est_minutes = 10
+scene_path = "res://days/day_012/game.tscn"
+bundle_id = "day_012"
+palette = PackedColorArray(0.3825, 0.8500, 0.6155, 1, 0.9800, 0.7350, 0.8579, 1, 0.1200, 0.3000, 0.2097, 1)

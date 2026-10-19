@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 65
+title = "Plank & Pallet"
+genre = "companion-escort logistics puzzle"
+pitch = "Get your young companion, who can't swim, across a flooded city. Move planks, float pallets and raise ladders. You can do things they can't."
+hints = PackedStringArray()
+est_minutes = 11
+scene_path = "res://days/day_065/game.tscn"
+bundle_id = "day_065"
+palette = PackedColorArray(0.8345, 0.8500, 0.3825, 1, 0.7431, 0.7350, 0.9800, 1, 0.2940, 0.3000, 0.1200, 1)

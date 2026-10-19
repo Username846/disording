@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 51
+title = "Hydraulic Hop"
+genre = "lowrider hydraulics rhythm"
+pitch = "Cruise-off competitions on the boulevard. Bounce your lowrider's corners to the beat to win the crowd."
+hints = PackedStringArray()
+est_minutes = 10
+scene_path = "res://days/day_051/game.tscn"
+bundle_id = "day_051"
+palette = PackedColorArray(0.3825, 0.7946, 0.8500, 1, 0.9800, 0.7640, 0.7350, 1, 0.1200, 0.2787, 0.3000, 1)

@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  godot:
+    name: Godot lint + tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Lint GDScript (gdtoolkit)
+        run: |
+          pip install "gdtoolkit==4.5.0"
+          gdformat --check --line-length 120 autoload core menu days tests dev
+          gdlint autoload core menu days tests dev
+
+      - name: Day stubs match docs/GAMES.md
+        run: |
+          python tools/ci/gen_day_stubs.py
+          git diff --exit-code -- days
+
+      - name: Cache Godot 4.7.2
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.local/bin/godot
+            ~/.local/share/godot/export_templates/4.7.2.stable
+          key: godot-4.7.2-stable-linux-web-v1
+
+      - name: Fetch Godot 4.7.2
+        run: python tools/ci/fetch_godot.py --dest ~/.local/bin
+
+      - name: Unit + smoke tests
+        run: GODOT=~/.local/bin/godot tools/ci/godot_tests.sh
+
+      - name: Upload logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot-logs
+          path: build/logs
+
+  songsmith:
+    name: Songsmith tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: tools/songsmith/requirements.txt
+
+      - run: pip install -r tools/songsmith/requirements.txt
+
+      - name: pytest
+        working-directory: tools/songsmith
+        run: python -m pytest -q

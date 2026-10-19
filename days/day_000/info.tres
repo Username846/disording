@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 0
+title = "Test Room"
+genre = "platform test fixture"
+pitch = "A 2-minute playground that exercises every gesture, the HUD, checkpoints, success, fail and a hidden star. Debug builds only."
+hints = PackedStringArray("tap|Tap things", "drag|Drag and swipe", "hold|Hold to fill")
+est_minutes = 2
+scene_path = "res://days/day_000/game.tscn"
+bundle_id = "day_000"
+palette = PackedColorArray(0.4, 0.75, 0.85, 1, 0.98, 0.95, 0.8, 1, 0.1, 0.18, 0.25, 1)

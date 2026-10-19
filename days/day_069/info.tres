@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 69
+title = "Undersea Pipes"
+genre = "pipe-flow puzzle (Pipe-Mania-like)"
+pitch = "Hack the machines of a drowned art-deco city by routing the flow through pipe tiles before it reaches an open end."
+hints = PackedStringArray()
+est_minutes = 10
+scene_path = "res://days/day_069/game.tscn"
+bundle_id = "day_069"
+palette = PackedColorArray(0.3825, 0.4451, 0.8500, 1, 0.9800, 0.9472, 0.7350, 1, 0.1200, 0.1441, 0.3000, 1)

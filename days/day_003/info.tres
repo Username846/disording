@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 3
+title = "Graph Paper Grand Prix"
+genre = "vector \"Racetrack\" (paper-and-pencil momentum racing)"
+pitch = "The classic pen-and-paper racing game, made tactile. Your car's next point is limited to the nine grid points around \"position + current velocity\", so momentum is everything."
+hints = PackedStringArray()
+est_minutes = 10
+scene_path = "res://days/day_003/game.tscn"
+bundle_id = "day_003"
+palette = PackedColorArray(0.8500, 0.3825, 0.7917, 1, 0.7350, 0.9800, 0.7655, 1, 0.3000, 0.1200, 0.2776, 1)

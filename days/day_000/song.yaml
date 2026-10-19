@@ -1,0 +1,111 @@
+# Day 0 "Test Room" (debug fixture, never shipped in release builds).
+# A short cheerful loop exercising several engines + stingers + SFX.
+title: "Test Room Jingle"
+bpm: 120
+key: C major
+beats_per_bar: 4
+swing: 0.0
+seed: 7
+target_minutes: 1.13
+form: [intro, verse1, chorus, interlude, chorus]
+loop: { from: verse1 }
+
+voice:
+  persona: female_solo
+
+reverb: { rt60: 1.4, predelay: 0.015, wet_db: -7 }
+
+instruments:
+  marimba: { patch: modal.marimba, pan: -0.3, gain_db: -2, reverb: 0.25 }
+  guitar:  { patch: pluck.nylon_guitar, pan: 0.35, gain_db: -5, reverb: 0.25 }
+  keys:    { patch: fm.epiano, pan: 0.1, gain_db: -7, reverb: 0.3 }
+  bass:    { patch: va.sub_bass, gain_db: -3, reverb: 0.05 }
+  lead:    { patch: va.square_lead, pan: 0.15, gain_db: -5, reverb: 0.3 }
+  kit:     { patch: drums.kit, gain_db: -4, reverb: 0.12 }
+
+sections:
+  intro:
+    bars: 2
+    chords: "C | G"
+    parts:
+      marimba: { pattern: arp_up, rate: 0.5, vel: 0.6 }
+      kit: { grid: { hat: "x.x.x.x.x.x.x.x." }, vel: 0.6 }
+
+  verse1:
+    bars: 8
+    chords: "C | F | G | C | Am | F | G | C"
+    parts:
+      marimba: { pattern: comp_offbeat, vel: 0.5 }
+      guitar: { pattern: arp_updown, rate: 0.5, vel: 0.5, octave: 3 }
+      bass: { pattern: root_fifth_2feel, vel: 0.8 }
+      kit: { grid: { kick: "x.......x.......", snare: "....x.......x...", hat: "x.x.x.x.x.x.x.x." }, vel: 0.7 }
+    melody: |
+      Tap:E4:1 the:E4:0.5 bub-:G4:0.5 ble,:G4:1 drag:A4:1 the:A4:1 block,:F4:2 _:1
+      swipe:D4:1 the:D4:0.5 ar-:G4:0.5 rows,:G4:1 beat:B4:1 the:C5:1 clock.:G4:2 _:1
+      Hold:E4:1 the:E4:0.5 but-:A4:0.5 ton,:A4:1 zoom:C5:1 in:A4:1 near,:F4:2 _:1
+      ev-:D4:0.5 ery:E4:0.5 test:G4:1 is:G4:1 wait-:B4:1 ing:D5:1 here.:C5:3
+
+  chorus:
+    bars: 8
+    chords: "F | C | G | Am | F | C | G | C"
+    parts:
+      keys: { pattern: block, vel: 0.55 }
+      marimba: { melody_double: true, octave_shift: 1, vel: 0.35, legato: 0.5 }
+      guitar: { pattern: arp_up, rate: 0.5, vel: 0.45, octave: 3 }
+      bass: { pattern: walking, vel: 0.85 }
+      kit: { grid: { kick: "x...x...x...x...", snare: "....x.......x..x", hat: "xxxxxxxxxxxxxxxx" }, vel: 0.7 }
+    melody: |
+      Test:A4:1 room,:A4:1 test:G4:1 room,:G4:1 round:E4:1 we:F4:1 go,:G4:2
+      try:B4:1 it:B4:0.5 fast:D5:0.5 and:B4:1 try:G4:1 it:A4:1 slow.:E4:2 _:1
+      Win:A4:1 or:A4:0.5 lose,:C5:1.5 it's:A4:1 all:G4:1 o-:E4:1 kay,:G4:2
+      test:B4:1 room,:B4:1 test:A4:1 room,:G4:1 play:E4:1 all:D4:1 day!:C4:2
+
+  interlude:
+    bars: 8
+    chords: "C | F | G | C | Am | F | G | C"
+    parts:
+      lead: { melody_of: verse1, octave_shift: 1, vel: 0.6 }
+      keys: { pattern: comp_offbeat, vel: 0.45 }
+      bass: { pattern: root_fifth_2feel, vel: 0.8 }
+      kit: { grid: { kick: "x.......x.......", snare: "....x.......x...", hat: "x.x.x.x.x.x.x.x." }, vel: 0.65 }
+
+stingers:
+  win:
+    bars: 2
+    chords: "F G | C"
+    parts:
+      marimba: { pattern: chord_bells, rate: 0.25, vel: 0.7 }
+      bass: { pattern: root, vel: 0.8 }
+      kit: { grid: { kick: "x.......x.......", snare: "....x.......x..." , hat: "x.x.x.x.x.x.x.x." }, vel: 0.7 }
+    melody: |
+      You:G4:0.5 did:A4:0.5 it!:B4:1 _:0.5 Hoo-:C5:0.5 ray,:E5:1 -:C5:2 _:2
+  lose:
+    bars: 2
+    bpm: 120
+    chords: "Am | Dm E"
+    parts:
+      keys: { pattern: block, vel: 0.5 }
+      bass: { pattern: root, vel: 0.7 }
+    melody: |
+      Try:A4:1 a-:G4:1 gain,:E4:2 try:F4:1 a-:E4:1 gain.:E4:2
+
+sfx:
+  pop:   { events: [{ patch: modal.marimba, note: C6, dur: 0.08, vel: 0.8 }], length: 0.35 }
+  drop:  { events: [{ patch: perc.tom, note: G2, vel: 0.9 }, { patch: modal.marimba, note: G4, t: 0.02, dur: 0.1, vel: 0.5 }], length: 0.5 }
+  swipe: { events: [{ patch: noise.whoosh, dur: 0.3, vel: 0.8, f_start: 600, f_end: 5000 }] }
+  hold:  { events: [{ patch: va.blip, note: C5, dur: 0.5, vel: 0.6, aenv: [0.05, 0.2, 0.7, 0.1] }], length: 0.7 }
+  zoom:
+    events:
+      - { patch: va.blip, note: G5, dur: 0.06, vel: 0.6 }
+      - { patch: va.blip, note: D6, t: 0.06, dur: 0.06, vel: 0.6 }
+    length: 0.35
+  ok:
+    events:
+      - { patch: modal.marimba, note: C5, dur: 0.1, vel: 0.7 }
+      - { patch: modal.marimba, note: G5, t: 0.09, dur: 0.15, vel: 0.8 }
+    length: 0.6
+  bad:
+    events:
+      - { patch: va.square_lead, note: E3, dur: 0.12, vel: 0.6 }
+      - { patch: va.square_lead, note: C3, t: 0.14, dur: 0.25, vel: 0.6 }
+    length: 0.6

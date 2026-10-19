@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 83
+title = "Slot Car Stadium"
+genre = "slot-car racing (one-button throttle)"
+pitch = "A tabletop slot-car cup. The only control is the throttle: push too hard into a corner and you fly off the slot."
+hints = PackedStringArray()
+est_minutes = 10
+scene_path = "res://days/day_083/game.tscn"
+bundle_id = "day_083"
+palette = PackedColorArray(0.4849, 0.8500, 0.3825, 1, 0.9263, 0.7350, 0.9800, 1, 0.1594, 0.3000, 0.1200, 1)

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 84
+title = "Coolant"
+genre = "bomb-disposal search"
+pitch = "Bombs are hidden across an offshore plant's struts. Sweep rooms with a sensor, avoid patrols, and freeze each charge with coolant spray before the timer runs out."
+hints = PackedStringArray()
+est_minutes = 12
+scene_path = "res://days/day_084/game.tscn"
+bundle_id = "day_084"
+palette = PackedColorArray(0.8500, 0.3825, 0.6213, 1, 0.7350, 0.9800, 0.8548, 1, 0.3000, 0.1200, 0.2120, 1)

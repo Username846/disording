@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 47
+title = "Hall of Paintings"
+genre = "sliding-tile puzzle (animated paintings)"
+pitch = "A castle hall of living paintings, scrambled into tiles. Slide them back together. Each solved painting awards a star."
+hints = PackedStringArray()
+est_minutes = 12
+scene_path = "res://days/day_047/game.tscn"
+bundle_id = "day_047"
+palette = PackedColorArray(0.8500, 0.5160, 0.3825, 1, 0.7350, 0.9100, 0.9800, 1, 0.3000, 0.1714, 0.1200, 1)

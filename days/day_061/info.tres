@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DayInfo" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/day/day_info.gd" id="1_info"]
+
+[resource]
+script = ExtResource("1_info")
+day = 61
+title = "Howling Stones"
+genre = "pitch-contour matching (howling)"
+pitch = "A twilight wolf learns ancient songs at howling stones. Trace each melody's pitch contour by sliding your howl up and down, with no microphone needed."
+hints = PackedStringArray()
+est_minutes = 10
+scene_path = "res://days/day_061/game.tscn"
+bundle_id = "day_061"
+palette = PackedColorArray(0.4762, 0.3825, 0.8500, 1, 0.9309, 0.9800, 0.7350, 1, 0.1561, 0.1200, 0.3000, 1)
